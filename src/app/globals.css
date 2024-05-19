@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '~bootstrap-icons/font/bootstrap-icons';
+
+/*
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -31,3 +34,4 @@ body {
     text-wrap: balance;
   }
 }
+*/
