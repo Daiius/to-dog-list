@@ -32,3 +32,8 @@ The dogs will eat them, and soon they'll disappear from your mind too...
 
 It might lead to irreparable consequences... :(
 
+
+## 開発メモ
+### 画面イメージ
+![画面構成検討](layout_memo.svg)
+
