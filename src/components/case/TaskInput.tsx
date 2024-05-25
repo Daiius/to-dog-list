@@ -9,16 +9,24 @@ import {
 	Button as HeadlessButton
 } from '@headlessui/react';
 
-const TaskInput: React.FC = () => {
+
+
+const TaskInput: React.FC<
+	React.ComponentProps<'div'>
+	& { onAddTask: (newTask: string) => void }
+> = ({
+	onAddTask,
+	...props
+}) => {
 	const [newTask, setNewTask] = React.useState<string>("");
 
 	const handleSubmitTask = () => {
-		console.log(`${newTask} is submitted!`);
+		onAddTask(newTask);
 		setNewTask("");
 	};
 
 	return (
-		<Field >
+		<Field className={props.className}>
 			<Label>New To-Do:</Label>
 			<div className='flex flex-row'>
 				<i className='bi bi-pen text-xl self-center mr-2'/>
@@ -26,7 +34,11 @@ const TaskInput: React.FC = () => {
 					value={newTask} 
 					onChange={(newValue: string) => setNewTask(newValue)}
 					onKeyDown={(e: React.KeyboardEvent) => {
-						if (!e.nativeEvent.isComposing && e.key === 'Enter') {
+						if (
+							!e.nativeEvent.isComposing 
+							&& e.key === 'Enter'
+							&& newTask.length > 0
+						) {
 							handleSubmitTask();
 						}
 					}}
