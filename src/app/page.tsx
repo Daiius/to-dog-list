@@ -1,11 +1,9 @@
-import TaskInput from '@/components/case/TaskInput';
+import MainContainer from '@/components/domain/MainContainer';
 
 export default function Home() {
   return (
-    <main className="min-h-screen p-24">
-
-			<TaskInput />
-
+    <main className=" p-24 flex flex-col justify-evenly">
+			<MainContainer />
     </main>
   );
 }
