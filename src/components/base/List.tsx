@@ -1,14 +1,16 @@
 import React from 'react';
 import clsx from 'clsx';
 
-export const ListItem: React.FC<React.PropsWithChildren> = ({
-	children
+export const ListItem: React.FC<React.ComponentProps<'div'>> = ({
+	children,
+	...props
 }) => (
 	<div
 		className={clsx(
 			'bg-white dark:bg-slate-500',
 			'first:rounded-t-lg last:rounded-b-lg',
-			'p-2'
+			'p-2',
+			props.className,
 		)}
 	>
 		{children}

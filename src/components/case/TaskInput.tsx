@@ -13,9 +13,13 @@ import {
 
 const TaskInput: React.FC<
 	React.ComponentProps<'div'>
-	& { onAddTask: (newTask: string) => void }
+	& { 
+		onAddTask: (newTask: string) => void;
+		autoFocus?: boolean;
+	}
 > = ({
 	onAddTask,
+	autoFocus,
 	...props
 }) => {
 	const [newTask, setNewTask] = React.useState<string>("");
@@ -27,7 +31,7 @@ const TaskInput: React.FC<
 
 	return (
 		<Field className={props.className}>
-			<Label>New To-Do:</Label>
+			<Label>New To-Do<span className='text-slate-700'>g</span>:</Label>
 			<div className='flex flex-row'>
 				<i className='bi bi-pen text-xl self-center mr-2'/>
 				<Input 
@@ -43,6 +47,7 @@ const TaskInput: React.FC<
 						}
 					}}
 					className='w-full'
+					autoFocus={autoFocus}
 				/>
 				<HeadlessButton
 					className={clsx(
