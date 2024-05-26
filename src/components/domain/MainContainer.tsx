@@ -18,8 +18,6 @@ const MainContainer: React.FC = () => {
 						className={clsx(
 							'opacity-0 -scale-x-100 absolute right-0',
 							tasks.length > 0 && 'animate-come-and-eat',
-							//tasks.length > 0 && 'transition opacity-100 -translate-x-[90vw] duration-[5s]',
-							//tasks.length > 0 && 'transition delay-[5.5s] translate-y-20'
 						)}
 						src='/dogs/dog_great_pyrenees.png'
 					/>

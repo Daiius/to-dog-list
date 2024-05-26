@@ -19,13 +19,13 @@ const config: Config = {
 			keyframes: {
 				come: {
 					'0%': { opacity: '0', transform: 'translateX(0)' },
-					'52.5%': { opacity: '1', transform: 'translateX(-80vw)' },
-					'55%': { opacity: '1', transform: 'translate(-80vw,20px)' },
-					'60%': { opacity: '1', transform: 'translate(-80vw, 0px)' },
-					'62.5%': { opacity: '1', transform: 'translate(-80vw,20px)' },
-					'65%': { opacity: '1', transform: 'translate(-80vw, 0px)' },
-					'67.5%': { opacity: '1', transform: 'translate(-80vw,20px)' },
-					'70%': { opacity: '1', transform: 'translate(-80vw, 0px)' },
+					'52.5%': { opacity: '1', transform: 'translateX(-70vw)' },
+					'55%': { opacity: '1', transform: 'translate(-70vw,20px)' },
+					'60%': { opacity: '1', transform: 'translate(-70vw, 0px)' },
+					'62.5%': { opacity: '1', transform: 'translate(-70vw,20px)' },
+					'65%': { opacity: '1', transform: 'translate(-70vw, 0px)' },
+					'67.5%': { opacity: '1', transform: 'translate(-70vw,20px)' },
+					'70%': { opacity: '1', transform: 'translate(-70vw, 0px)' },
 					'100%': { opacity: '1', transform: 'translate(-150vw, 0px)' },
 				},
 				//bounce: {
@@ -38,3 +38,4 @@ const config: Config = {
   plugins: [],
 };
 export default config;
+
