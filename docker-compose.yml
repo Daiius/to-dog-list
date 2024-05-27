@@ -1,0 +1,12 @@
+services:
+  nextjs:
+    build:
+      dockerfile: ./Dockerfile.nextjs.prod
+    container_name: nextjs
+    ports:
+      - 3000:3000
+
+networks:
+  default:
+    name: nextjs-test-network
+
