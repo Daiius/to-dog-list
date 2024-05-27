@@ -25,7 +25,11 @@ const MainContainer: React.FC = () => {
 	const [eaten, setEaten] = React.useState<boolean>(false);
 
 	return (
-		<div className='max-h-[70vh]'>
+		<div
+			className={clsx(
+				'max-h-[70vh] self-center w-4/5 min-w-[30rem] max-w-[50rem]'
+			)}
+		>
 			<div>
 				<Image
 					alt='cute dog'
