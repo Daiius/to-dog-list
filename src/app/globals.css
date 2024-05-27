@@ -4,6 +4,7 @@
 
 @import '~bootstrap-icons/font/bootstrap-icons';
 
+/*
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -15,8 +16,13 @@
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
-		color-scheme: dark;
   }
+}
+
+:root.dark {
+	--foreground-rgb: 255, 255, 255;
+	--background-start-rgb: 0, 0, 0;
+	--background-end-rgb: 0, 0, 0;
 }
 
 body {
@@ -34,44 +40,5 @@ body {
     text-wrap: balance;
   }
 }
-
-[data-dark-mode-or-maybe-class-onbody] :-webkit-autofill,
-[data-dark-mode-or-maybe-class-onbody] :-webkit-autofill:hover,
-[data-dark-mode-or-maybe-class-onbody] :-webkit-autofill:focus {
-    color-scheme: dark;
-}
-
-input:-webkit-autofill,
-input:-webkit-autofill:enabled,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-textarea:-webkit-autofill,
-textarea:-webkit-autofill:enabled,
-textarea:-webkit-autofill:hover,
-textarea:-webkit-autofill:focus,
-select:-webkit-autofill,
-select:-webkit-autofill:enabled,
-select:-webkit-autofill:hover,
-select:-webkit-autofill:focus {
-	-webkit-text-fill-color: #fff;
-	-webkit-box-shadow: 0 0 0px 1000px #785100c7 inset;
-	box-shadow: 0 0 0px 1000px #785100c7 inset;
-	background-color: #785100c7;
-	font: normal;
-}
-
-@layer components {
-
-  .autofill-text:-webkit-autofill {
-    -webkit-text-fill-color: white;
-  }
-
-  .text-input {
-    @apply autofill-text; /* set text colour (white) */
-    @apply autofill:shadow-[inset_0_0_0px_1000px_#000]; /* set 'background' colour (black)*/
-    @apply autofill:text-2xl; /* set font size */
-  }
-}
-
-
+*/
 

@@ -31,7 +31,7 @@ const TaskInput: React.FC<
 
 	return (
 		<Field className={props.className}>
-			<Label>New To-Do<span className='text-slate-700'>g</span>:</Label>
+			<Label>New To-Do<span className='dark:text-slate-700 text-slate-300'>g</span>:</Label>
 			<div className='flex flex-row'>
 				<i className='bi bi-pen text-xl self-center mr-2'/>
 				<Input 

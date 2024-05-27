@@ -16,16 +16,22 @@ const TaskList: React.FC<
 		<div
 			className={props.className}
 		>	
-			<div>To-Do<span className='text-slate-700'>g</span>List :</div>
+			<div>To-Do<span className='dark:text-slate-700 text-slate-300'>g</span>List :</div>
 			<List
 				className={clsx(
-					'ml-7 max-h-[20rem] min-h-10 rounded-lg',
-					'bg-slate-600 h-5 border-1 border-slate-500 shadow-inner'
+					'ml-7 max-h-[20rem] min-h-10 rounded-lg shadow-inner',
+					'dark:bg-slate-600  bg-white',
+					'border border-1 border-slate-300 dark:border-slate-500',
+					'overflow-hidden',
 				)}
 			>
 				{tasks.length === 0 &&
 					<div className='relative'>
-						<div className='text-slate-300 absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-2'>
+						<div
+							className={clsx(
+								'dark:text-slate-300 absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-2'
+							)
+						}>
 							Nothing to do :)
 						</div>
 					</div>
