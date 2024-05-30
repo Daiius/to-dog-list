@@ -27,7 +27,7 @@ const MainContainer: React.FC = () => {
 	return (
 		<div
 			className={clsx(
-				'max-h-[70vh] self-center w-4/5 min-w-[30rem] max-w-[50rem]'
+				'max-h-[70vh] self-center w-4/5'
 			)}
 		>
 			<div>
@@ -36,10 +36,11 @@ const MainContainer: React.FC = () => {
 					width={150}
 					height={150}
 					className={clsx(
+						'pointer-events-none',
 						'opacity-0 -scale-x-100 absolute right-0 z-10',
 						tasks.length > 0 && 'animate-come-and-eat',
 					)}
-					src={'/dogs/' + dogImages[dogIndex]}
+					src={'/to-dog-list/dogs/' + dogImages[dogIndex]}
 				/>
 				<TaskList eaten={eaten} tasks={tasks} className='mb-5'/>
 			</div>

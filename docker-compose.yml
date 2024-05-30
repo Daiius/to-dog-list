@@ -1,8 +1,8 @@
 services:
-  nextjs:
+  to-dog-list:
     build:
       dockerfile: ./Dockerfile.nextjs.prod
-    container_name: nextjs
+    container_name: to-dog-list
     ports:
       - 3000:3000
 
