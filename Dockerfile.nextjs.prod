@@ -34,9 +34,6 @@ ENV NODE_ENV production
 COPY package.json package-lock.json next.config.mjs ./
 COPY --from=build /app/public ./public
 COPY --from=build /app/.next ./.next
-# ここでも server/index.ts 関連の指定はいらないらしい
-# package.json の start で指定しているからそれで十分なのだろうか
-#COPY --from=build /app/dist ./dist
 COPY --from=node_modules /app/node_modules ./node_modules
 
 CMD ["node_modules/.bin/next", "start"]

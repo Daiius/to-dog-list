@@ -19,7 +19,7 @@ const TaskList: React.FC<
 			<div>To-Do<span className='dark:text-slate-700 text-slate-300'>g</span>List :</div>
 			<List
 				className={clsx(
-					'ml-7 max-h-[20rem] min-h-10 rounded-lg shadow-inner',
+					'ml-7 max-h-[20rem] min-h-10 rounded-lg shadow-inner w-full',
 					'dark:bg-slate-600  bg-white',
 					'border border-1 border-slate-300 dark:border-slate-500',
 					'overflow-hidden',
