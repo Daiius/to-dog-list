@@ -36,7 +36,7 @@ const MainContainer: React.FC = () => {
 					使うのがよいらしい
 					（横向きのスクロールバーが表示されそうだがそれは対処できる？）
 				*/}
-				<TaskList eaten={eaten} tasks={tasks} className='mb-5'/>
+				<TaskList eaten={eaten} tasks={tasks} className='mb-5 w-[87.5%]'/>
 				<div className={clsx(
 					'absolute translate-x-full top-0 w-full',
 					'pointer-events-none h-fit',
