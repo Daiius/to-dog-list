@@ -18,9 +18,20 @@ export const useSettings = () =>
 const SettingsProvider: React.FC<React.PropsWithChildren> = ({
 	children 
 }) => {
-	const [headingTrained, setHeadingTrained] = React.useState<boolean>(false);
+	const [headingTrained, setHeadingTrained] = React.useState<boolean>(localStorage.getItem('headingTrained') === 'true');
+
+	const onHeadingTrainedChange = (newHeadingTrained: boolean) => {
+		setHeadingTrained(newHeadingTrained);
+		localStorage.setItem('headingTrained', newHeadingTrained.toString());
+	};
+
 	return (
-		<SettingsContext.Provider value={{ headingTrained, setHeadingTrained }}>
+		<SettingsContext.Provider
+			value={{ 
+				headingTrained,
+				setHeadingTrained: onHeadingTrainedChange
+		 	}}
+		>
 		 	{children}
 		</SettingsContext.Provider>
 	);
