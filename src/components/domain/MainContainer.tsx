@@ -27,23 +27,30 @@ const MainContainer: React.FC = () => {
 	return (
 		<div
 			className={clsx(
-				'max-h-[70vh] self-center w-4/5'
+				'max-h-[70vh] self-center relative w-full p-5 overflow-hidden'
 			)}
 		>
-			<div>
-				<Image
-					alt='cute dog'
-					width={150}
-					height={150}
-					className={clsx(
-						'pointer-events-none',
-						'opacity-0 -scale-x-100 absolute right-0 z-10',
-						tasks.length > 0 && 'animate-come-and-eat',
-					)}
-					src={'/to-dog-list/dogs/' + dogImages[dogIndex]}
-				/>
+				{/*
+					TaskListの端から端まで犬を移動させたい
+					こういう場合には、TaskListと同じ幅を持つラッパー要素を
+					使うのがよいらしい
+					（横向きのスクロールバーが表示されそうだがそれは対処できる？）
+				*/}
 				<TaskList eaten={eaten} tasks={tasks} className='mb-5'/>
-			</div>
+				<div className={clsx(
+					'absolute translate-x-full top-0 w-full',
+					'pointer-events-none h-fit',
+					'opacity-100',
+					tasks.length > 0 && 'animate-come-and-eat',
+				)}>
+					<Image
+						className={clsx(tasks.length > 0 ? 'opacity-100' : 'opacity-0' )}
+						alt='cute dog'
+						width={150}
+						height={150}
+						src={'/to-dog-list/dogs/' + dogImages[dogIndex]}
+					/>
+				</div>
 			<TaskInput
 				autoFocus
 				onAddTask={newTask => {

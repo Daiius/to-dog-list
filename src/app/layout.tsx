@@ -11,6 +11,13 @@ import clsx from 'clsx';
 export const metadata: Metadata = {
   title: "To-Dog List",
   description: "かわいい犬がタスクを食べてくれるWebアプリ",
+	openGraph: {
+		type: 'website',
+		url: 'http://faveo-systema.net/to-dog-list',
+		description: 'かわいい犬がタスクを食べてくれるWebアプリ',
+		siteName: 'To-Dog List',
+		images: 'http://faveo-systema.net/to-dog-list/thumbnail.png',
+	}
 };
 
 export default function RootLayout({
