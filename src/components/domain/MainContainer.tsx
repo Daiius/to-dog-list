@@ -5,6 +5,7 @@ import clsx from 'clsx';
 
 import TaskInput from '@/components/case/TaskInput';
 import TaskList from '@/components/case/TaskList';
+import { useSettings } from '@/providers/SettingsProvider';
 
 type DogData = {
 	fileName: string;
@@ -13,7 +14,7 @@ type DogData = {
 
 
 const dogData: DogData[] = [
-	{ fileName: 'dog_belgian_groenendael.png', loveToRunBackwards: false },
+	{ fileName: 'dog_belgian_groenendael.png', loveToRunBackwards: true },
 	{ fileName: 'dog_bernese_mountain.png', loveToRunBackwards: false },
 	{ fileName: 'dog_borzoi.png', loveToRunBackwards: false },
 	{ fileName: 'dog_english_springer_spaniel.png', loveToRunBackwards: false },
@@ -30,6 +31,7 @@ const MainContainer: React.FC = () => {
 	const [tasks, setTasks] = React.useState<string[]>([]);
 	const [dogIndex, setDogIndex] = React.useState<number>(0);
 	const [eaten, setEaten] = React.useState<boolean>(false);
+	const { headingTrained } = useSettings();
 
 	return (
 		<div
@@ -51,7 +53,11 @@ const MainContainer: React.FC = () => {
 					tasks.length > 0 && 'animate-come-and-eat',
 				)}>
 					<Image
-						className={clsx(tasks.length > 0 ? 'opacity-100' : 'opacity-0' )}
+						className={clsx(
+							'w-fill h-auto',
+							tasks.length > 0 ? 'opacity-100' : 'opacity-0',
+							headingTrained && dogData[dogIndex].loveToRunBackwards && '-scale-x-100',
+						)}
 						alt='cute dog'
 						width={150}
 						height={150}

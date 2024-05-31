@@ -5,6 +5,7 @@ import clsx from 'clsx';
 
 import { Switch } from '@headlessui/react';
 import { useTheme } from 'next-themes';
+import { useSettings } from '@/providers/SettingsProvider';
 
 const ThemeSwitch: React.FC<
 	{ className?: string; }
@@ -55,8 +56,29 @@ const ThemeSwitch: React.FC<
 	);
 };
 
+const HeadingSwitch: React.FC = () => {
+	const { headingTrained, setHeadingTrained } = useSettings();
+	return (	
+		<Switch
+			checked={headingTrained}
+			onChange={v => setHeadingTrained(v)}
+			className={clsx(
+				'border border-1 border-slate-300 dark:border-slate-500 rounded-md',
+				'text-slate-500 dark:text-slate-400',
+			)}
+		>
+			<i className='bi bi-caret-left-fill'/>
+			{headingTrained
+				? <i className='bi bi-caret-right'/>
+				: <i className='bi bi-caret-right-fill'/>
+			}
+		</Switch>
+	);
+};
+
 const Header: React.FC = () => (
 	<div className='w-full flex flex-row p-5'>
+		<HeadingSwitch />
 		<ThemeSwitch />
 	</div>
 );

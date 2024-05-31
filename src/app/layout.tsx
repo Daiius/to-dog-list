@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
+import clsx from 'clsx';
 //import { Inter } from "next/font/google";
 import "./globals.css";
 
 import ThemeProvider from '@/providers/ThemeProvider';
+import SettingsProvider from "@/providers/SettingsProvider";
 import Header from '@/components/domain/Header';
-import clsx from 'clsx';
 
 //const inter = Inter({ subsets: ["latin"] });
 
@@ -30,15 +31,17 @@ export default function RootLayout({
 			suppressHydrationWarning
 		>
 			<ThemeProvider attribute='class'>
-				<body className={clsx(
-					'h-[100vh] w-[100vw] self-center',
-					'text-black dark:text-white',
-					'bg-gradient-to-b from-slate-100 to-slate-200',
-					'dark:from-slate-800 dark:to-slate-900',
-				)}>
-					<Header />
-					{children}
-				</body>
+				<SettingsProvider>
+					<body className={clsx(
+						'h-[100vh] w-[100vw] self-center',
+						'text-black dark:text-white',
+						'bg-gradient-to-b from-slate-100 to-slate-200',
+						'dark:from-slate-800 dark:to-slate-900',
+					)}>
+						<Header />
+						{children}
+					</body>
+				</SettingsProvider>
 			</ThemeProvider>
     </html>
   );
