@@ -13,6 +13,7 @@ import {
 } from '@headlessui/react';
 import { useTheme } from 'next-themes';
 import { useSettings } from '@/providers/SettingsProvider';
+import useMount from '@/hooks/useMount';
 
 const ThemeSwitch: React.FC<
 	{ className?: string; }
@@ -20,11 +21,7 @@ const ThemeSwitch: React.FC<
 	className,
 ) => {
 	const { setTheme, theme } = useTheme();
-	const [mounted, setMounted] = React.useState<boolean>(false);
-
-	React.useEffect(() => {
-		setMounted(true);
-	}, []);
+	const { mounted } = useSettings();
 
 	if (!mounted) return null;
 
@@ -80,7 +77,8 @@ const HeadingIcon: React.FC<{
 );
 
 const HeadingSwitch: React.FC = () => {
-	const { headingTrained, setHeadingTrained } = useSettings();
+	const { headingTrained, setHeadingTrained, mounted } = useSettings();
+	if (!mounted) return null;
 	return (	
 		<Switch
 			checked={headingTrained}

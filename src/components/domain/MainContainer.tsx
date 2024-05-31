@@ -31,7 +31,7 @@ const MainContainer: React.FC = () => {
 	const [tasks, setTasks] = React.useState<string[]>([]);
 	const [dogIndex, setDogIndex] = React.useState<number>(0);
 	const [eaten, setEaten] = React.useState<boolean>(false);
-	const { headingTrained } = useSettings();
+	const { headingTrained, mounted } = useSettings();
 
 	return (
 		<div
@@ -62,13 +62,14 @@ const MainContainer: React.FC = () => {
 						width={150}
 						height={150}
 						src={'/to-dog-list/dogs/' + dogData[dogIndex].fileName}
+						priority={true}
 					/>
 				</div>
 			<TaskInput
 				autoFocus
 				onAddTask={newTask => {
 					setTasks([...new Set([...tasks, newTask])]);
-					if (tasks.length === 0) {
+					if (mounted && tasks.length === 0) {
 						setTimeout(() => setEaten(true), 3000);
 						setTimeout(() => setTasks([]), 4000);
 						setTimeout(() => setEaten(false), 5000);

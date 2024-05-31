@@ -30,7 +30,7 @@ export default function RootLayout({
     <html lang="en"
 			suppressHydrationWarning
 		>
-			<ThemeProvider attribute='class'>
+			<ThemeProvider attribute='class' enableSystem={true}>
 				<SettingsProvider>
 					<body className={clsx(
 						'h-[100vh] w-[100vw] self-center',
