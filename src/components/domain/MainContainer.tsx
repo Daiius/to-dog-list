@@ -6,18 +6,24 @@ import clsx from 'clsx';
 import TaskInput from '@/components/case/TaskInput';
 import TaskList from '@/components/case/TaskList';
 
-const dogImages: string[] = [
-	'dog_belgian_groenendael.png',
-	'dog_bernese_mountain.png',
-	'dog_borzoi.png',
-	'dog_english_springer_spaniel.png',
-	'dog_great_dane.png',
-	'dog_great_pyrenees.png',
-	'dog_italian_greyhound2.png',
-	'dog_kooikerhondje.png',
-	'dog_shetland_sheepdog_blue_merle.png',
-	'dog_shetland_sheepdog.png',
-	'dog_american_cocker_spaniel.png',
+type DogData = {
+	fileName: string;
+	loveToRunBackwards: boolean; // 右向きの画像ならtrue
+}
+
+
+const dogData: DogData[] = [
+	{ fileName: 'dog_belgian_groenendael.png', loveToRunBackwards: false },
+	{ fileName: 'dog_bernese_mountain.png', loveToRunBackwards: false },
+	{ fileName: 'dog_borzoi.png', loveToRunBackwards: false },
+	{ fileName: 'dog_english_springer_spaniel.png', loveToRunBackwards: false },
+	{ fileName: 'dog_great_dane.png', loveToRunBackwards: false },
+	{ fileName: 'dog_great_pyrenees.png', loveToRunBackwards: true },
+	{ fileName: 'dog_italian_greyhound2.png', loveToRunBackwards: false },
+	{ fileName: 'dog_kooikerhondje.png', loveToRunBackwards: false },
+	{ fileName: 'dog_shetland_sheepdog_blue_merle.png', loveToRunBackwards: true },
+	{ fileName: 'dog_shetland_sheepdog.png', loveToRunBackwards: true },
+	{ fileName: 'dog_american_cocker_spaniel.png', loveToRunBackwards: true },
 ];
 
 const MainContainer: React.FC = () => {
@@ -49,7 +55,7 @@ const MainContainer: React.FC = () => {
 						alt='cute dog'
 						width={150}
 						height={150}
-						src={'/to-dog-list/dogs/' + dogImages[dogIndex]}
+						src={'/to-dog-list/dogs/' + dogData[dogIndex].fileName}
 					/>
 				</div>
 			<TaskInput
@@ -57,7 +63,7 @@ const MainContainer: React.FC = () => {
 				onAddTask={newTask => {
 					setTasks([...new Set([...tasks, newTask])]);
 					if (tasks.length === 0) {
-						setDogIndex(v => (v + 1) % dogImages.length);
+						setDogIndex(v => (v + 1) % dogData.length);
 						setTimeout(() => setEaten(true), 3000);
 						setTimeout(() => setTasks([]), 4000);
 						setTimeout(() => setEaten(false), 5000);
