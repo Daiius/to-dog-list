@@ -17,6 +17,7 @@ const dogImages: string[] = [
 	'dog_kooikerhondje.png',
 	'dog_shetland_sheepdog_blue_merle.png',
 	'dog_shetland_sheepdog.png',
+	'dog_american_cocker_spaniel.png',
 ];
 
 const MainContainer: React.FC = () => {
