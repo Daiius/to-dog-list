@@ -3,8 +3,16 @@
 import React from 'react';
 import clsx from 'clsx';
 
-import { Switch } from '@headlessui/react';
+import DogIcon from '@/components/base/DogIcon';
+
+import { 
+	Switch, 
+	Button,
+	Transition, TransitionChild,
+	Dialog, DialogPanel, DialogTitle,
+} from '@headlessui/react';
 import { useTheme } from 'next-themes';
+import { useSettings } from '@/providers/SettingsProvider';
 
 const ThemeSwitch: React.FC<
 	{ className?: string; }
@@ -55,11 +63,104 @@ const ThemeSwitch: React.FC<
 	);
 };
 
-const Header: React.FC = () => (
-	<div className='w-full flex flex-row p-5'>
-		<ThemeSwitch />
+const HeadingIcon: React.FC<{
+	headingTrained: boolean;
+}> = ({
+	headingTrained,
+}) => (
+	<div className='flex flex-row'>
+		<DogIcon className='
+			fill-slate-400 w-5 h-5 stroke-[10px] stroke-slate-400'
+		/>
+		<DogIcon className={clsx(
+			'w-5 h-5 stroke-[10px] stroke-slate-400 -scale-x-100',
+			headingTrained ? 'fill-none' : 'fill-slate-400',
+		)}/>
 	</div>
 );
+
+const HeadingSwitch: React.FC = () => {
+	const { headingTrained, setHeadingTrained } = useSettings();
+	return (	
+		<Switch
+			checked={headingTrained}
+			onChange={v => setHeadingTrained(v)}
+			className={clsx(
+				'border border-1 border-slate-300 dark:border-slate-500 rounded-md',
+				'text-slate-500 dark:text-slate-400',
+				'p-1',
+			)}
+		>
+			<HeadingIcon headingTrained={headingTrained} />
+		</Switch>
+	);
+};
+
+const HelpButton: React.FC<React.ComponentProps<typeof Button>> = (
+	props
+) => (
+	<Button {...props}>
+		<i className='bi bi-info-circle text-slate-400'/>
+	</Button>
+);
+
+const HelpDialog: React.FC<{
+	open: boolean;
+	onClose: () => void;
+}> = ({ open, onClose, }) => (
+	<Transition appear show={open}>	
+		<Dialog
+			as='div'
+			className='relative z-10 focus:outline-none' 
+			onClose={onClose}
+		>
+				<div className='fixed inset-0 bg-black/30 w-screen'>
+				<div className='flex min-h-full items-start justify-center p-4'>
+					<TransitionChild
+						enter='ease-out duration-300'
+						enterFrom='opacity-0 transform-[scale(95%)]'
+						enterTo='opecity-100 transform-[scale(100%)]'
+						leave='ease-in duration-200'
+						leaveFrom='opacity-100 transform-[scale(100%)]'
+						leaveTo='opacity-0 transform-[scale(95%)]'
+					>
+						<DialogPanel
+							onClick={onClose}
+							className='w-full max-w-4/5 rounded-xl bg-slate-300 dark:bg-slate-600 py-2 px-5 backdrop-blur-2xl'
+						>
+							<DialogTitle className='my-1 font-bold'>
+								<div>To-Do<span className='text-slate-400 dark:text-slate-500'>g</span>List Settings:</div>
+							</DialogTitle>
+							<div className='flex flex-row gap-4 ml-2'>
+								<HeadingIcon headingTrained={false}/>
+								:
+								<p>後ろ向きに走るのが好きな犬がいます</p>
+							</div>
+							<div className='flex flex-row gap-4 ml-2'>
+								<HeadingIcon headingTrained={true}/>
+								:
+								<p>みんな前向きに走る様にトレーニングします</p>
+							</div>
+						</DialogPanel>
+					</TransitionChild>
+				</div>
+				</div>
+		</Dialog>
+	</Transition>
+);
+
+const Header: React.FC = () => {
+	const [open, setOpen] = React.useState<boolean>(false);
+	return (
+	<div className='w-full flex flex-row p-5 gap-4'>
+		<HelpDialog open={open} onClose={() => setOpen(false)}/>
+		<HeadingSwitch />
+		<HelpButton onClick={() => setOpen(true)}/>
+		<ThemeSwitch />
+
+	</div>
+	);
+};
 
 export default Header;
 
