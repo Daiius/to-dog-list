@@ -69,10 +69,10 @@ const MainContainer: React.FC = () => {
 				onAddTask={newTask => {
 					setTasks([...new Set([...tasks, newTask])]);
 					if (tasks.length === 0) {
-						setDogIndex(v => (v + 1) % dogData.length);
 						setTimeout(() => setEaten(true), 3000);
 						setTimeout(() => setTasks([]), 4000);
 						setTimeout(() => setEaten(false), 5000);
+						setTimeout(() => setDogIndex(v => (v + 1) % dogData.length), 5000);
 					}
 				}}
 			/>
