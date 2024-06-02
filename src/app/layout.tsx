@@ -14,10 +14,10 @@ export const metadata: Metadata = {
   description: "かわいい犬がタスクを食べてくれるWebアプリ",
 	openGraph: {
 		type: 'website',
-		url: 'http://faveo-systema.net/to-dog-list',
+		url: 'https://faveo-systema.net/to-dog-list',
 		description: 'かわいい犬がタスクを食べてくれるWebアプリ',
 		siteName: 'To-Dog List',
-		images: 'http://faveo-systema.net/to-dog-list/thumbnail.png',
+		images: 'https://faveo-systema.net/to-dog-list/thumbnail.png',
 	}
 };
 
