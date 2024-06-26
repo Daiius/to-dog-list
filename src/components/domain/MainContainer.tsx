@@ -62,7 +62,7 @@ const MainContainer: React.FC = () => {
             width={150}
             height={150}
             src={'/to-dog-list/dogs/' + dogData[dogIndex].fileName}
-            priority={true}
+            priority
           />
         </div>
       <TaskInput
