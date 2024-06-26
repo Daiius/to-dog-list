@@ -8,7 +8,7 @@ import {
   Label,
   Button as HeadlessButton
 } from '@headlessui/react';
-
+import { PencilIcon } from '@heroicons/react/24/outline';
 
 
 const TaskInput: React.FC<
@@ -33,7 +33,8 @@ const TaskInput: React.FC<
     <Field className={props.className}>
       <Label>New To-Do<span className='dark:text-slate-700 text-slate-300'>g</span>:</Label>
       <div className='flex flex-row'>
-        <i className='bi bi-pen text-xl self-center mr-2'/>
+        {/* <i className='bi bi-pen text-xl self-center mr-2'/> */}
+        <PencilIcon className='size-7 self-center mr-2' />
         <Input 
           value={newTask} 
           onChange={(newValue: string) => setNewTask(newValue)}

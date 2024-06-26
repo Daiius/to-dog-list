@@ -14,6 +14,7 @@ import {
 import { useTheme } from 'next-themes';
 import { useSettings } from '@/providers/SettingsProvider';
 import useMount from '@/hooks/useMount';
+import {InformationCircleIcon, MoonIcon, SunIcon} from '@heroicons/react/24/outline';
 
 const ThemeSwitch: React.FC<
   { className?: string; }
@@ -39,14 +40,14 @@ const ThemeSwitch: React.FC<
         className,
       )}
     >
-      <i className={clsx(
-           theme === 'light' && 'bi bi-sun',
-           theme === 'dark'  && 'bi bi-moon',
+      <div className={clsx(
            'absolute transition-transform duration-800 text-white',
-           'translate-x-7 -translate-y-[0.15rem] dark:text-slate-600',
+           'translate-x-7 dark:text-slate-600',
            'dark:translate-x-1'
-         )}
-      />
+      )}>
+        {theme === 'light' && <SunIcon className='size-5' />}
+        {theme === 'dark' && <MoonIcon className='size-5' />}
+      </div>
       <span
         aria-hidden={true}
         className={clsx(
@@ -98,7 +99,7 @@ const HelpButton: React.FC<React.ComponentProps<typeof Button>> = (
   props
 ) => (
   <Button {...props}>
-    <i className='bi bi-info-circle text-slate-400'/>
+    <InformationCircleIcon className='size-6'/>
   </Button>
 );
 
