@@ -8,7 +8,7 @@ import {
   Label,
   Button as HeadlessButton
 } from '@headlessui/react';
-import { PencilIcon } from '@heroicons/react/24/outline';
+import { PencilIcon, PlusIcon } from '@heroicons/react/24/outline';
 
 
 const TaskInput: React.FC<
@@ -58,9 +58,7 @@ const TaskInput: React.FC<
           )}
           onClick={handleSubmitTask}
         >
-          <i className={clsx(
-            'bi bi-arrow-return-left self-center text-lg',
-          )}/>
+          <PlusIcon className='size-6'/>
         </HeadlessButton>
       </div>
     </Field>
