@@ -34,7 +34,7 @@ FROM gcr.io/distroless/nodejs20-debian12
 WORKDIR /app
 ENV NODE_ENV=production
 
-COPY package.json next.config.mjs ./
+COPY package.json next.config.ts ./
 COPY --from=build /app/.next/standalone ./
 COPY --from=build /app/public ./public
 COPY --from=build /app/.next/static ./.next/static
