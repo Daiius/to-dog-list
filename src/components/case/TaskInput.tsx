@@ -31,11 +31,12 @@ const TaskInput: React.FC<
 
   return (
     <Field className={props.className}>
-      <Label>New To-Do<span className='dark:text-slate-700 text-slate-300'>g</span>:</Label>
+      <Label htmlFor='task-input'>New To-Do<span className='dark:text-slate-700 text-slate-300'>g</span>:</Label>
       <div className='flex flex-row'>
         {/* <i className='bi bi-pen text-xl self-center mr-2'/> */}
         <PencilIcon className='size-7 self-center mr-2' />
-        <Input 
+        <Input
+          id='task-input' 
           value={newTask} 
           onChange={(newValue: string) => setNewTask(newValue)}
           onKeyDown={(e: React.KeyboardEvent) => {

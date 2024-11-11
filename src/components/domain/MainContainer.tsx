@@ -1,6 +1,5 @@
 'use client'
 import React from 'react';
-import Image from 'next/image';
 import clsx from 'clsx';
 
 import TaskInput from '@/components/case/TaskInput';
@@ -27,6 +26,8 @@ const dogData: DogData[] = [
   { fileName: 'dog_american_cocker_spaniel.png', loveToRunBackwards: true },
 ];
 
+const BASE_PATH = import.meta.env.VITE_BASE_PATH ?? '';
+
 const MainContainer: React.FC = () => {
   const [tasks, setTasks] = React.useState<string[]>([]);
   const [dogIndex, setDogIndex] = React.useState<number>(0);
@@ -52,7 +53,7 @@ const MainContainer: React.FC = () => {
           'opacity-100',
           tasks.length > 0 && 'animate-come-and-eat',
         )}>
-          <Image
+          <img
             className={clsx(
               'w-fill h-auto',
               tasks.length > 0 ? 'opacity-100' : 'opacity-0',
@@ -61,8 +62,7 @@ const MainContainer: React.FC = () => {
             alt='cute dog'
             width={150}
             height={150}
-            src={'/to-dog-list/dogs/' + dogData[dogIndex].fileName}
-            priority
+            src={BASE_PATH + '/dogs/' + dogData[dogIndex].fileName}
           />
         </div>
       <TaskInput
