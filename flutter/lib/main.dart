@@ -19,12 +19,24 @@ class MainApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({ super.key });
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late final AnimatedDogController dogController;
+
+  @override
+  void initState() {
+    super.initState();
+    dogController = AnimatedDogController();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final dogController = AnimatedDogController();
-
     return Scaffold(
       body: Center(
         child: Container(
@@ -33,10 +45,7 @@ class HomePage extends StatelessWidget {
           child: Stack(
             children: [
               TaskPage(onTaskSubmitted: dogController.startAnimation),
-              Align(
-                alignment: Alignment.bottomLeft,
-                child: AnimatedDog(controller: dogController),
-              ),
+              AnimatedDog(controller: dogController),
             ],
           ),
         ),
@@ -96,13 +105,7 @@ class CurrentTask extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Text('To-Do'),
-            Text('g', style: hiddenTextStyle),
-            Text('List:'),
-          ],
-        ),
+        ToDoListLabel(hiddenTextStyle: hiddenTextStyle),
         Row(
           children: [
             SizedBox(width: 40),
@@ -121,6 +124,26 @@ class CurrentTask extends StatelessWidget {
             ),
           ],
         ),
+      ],
+    );
+  }
+}
+
+class ToDoListLabel extends StatelessWidget {
+  const ToDoListLabel({
+    super.key,
+    required this.hiddenTextStyle,
+  });
+
+  final TextStyle hiddenTextStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text('To-Do'),
+        Text('g', style: hiddenTextStyle),
+        Text('List:'),
       ],
     );
   }
@@ -224,12 +247,45 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 5),
+      duration: const Duration(seconds: 2),
     );
-    _animation = Tween<Alignment>(
-      begin: Alignment(1.0, 0.0), 
-      end:   Alignment(0.0, 0.0)
-    ).animate(
+    _animation = TweenSequence<Alignment>([
+      // right to left
+      TweenSequenceItem(
+        tween: Tween(
+          begin: Alignment(1.0, 0.0), 
+          end:   Alignment(-1.0, 0.0),
+        ).chain(CurveTween(curve: Curves.easeOut)),
+        weight: 20,
+      ),
+      // eat, first one bounce
+      for (var i = 0; i < 2; i++) 
+        TweenSequenceItem(
+          tween: Tween(
+            begin: Alignment(-1.0, i % 2 == 0 ? 0.1 : 0.0),
+            end:   Alignment(-1.0, i % 2 == 0 ? 0.0 : 0.1),
+          ),
+          weight: 20,
+        )
+      ,
+      // eat, last two bounce
+      for (var i = 0; i < 4; i++) 
+        TweenSequenceItem(
+          tween: Tween(
+            begin: Alignment(-1.0, i % 2 == 0 ? 0.1 : 0.0),
+            end:   Alignment(-1.0, i % 2 == 0 ? 0.0 : 0.1),
+          ),
+          weight: 20,
+        )
+      ,
+      TweenSequenceItem(
+        tween: Tween(
+          begin: Alignment(-1.0, 0.0),
+          end:   Alignment(-2.0, 0.0), 
+        ), 
+        weight: 20,
+      ),
+    ]).animate(
       CurvedAnimation(parent: _controller, curve: Curves.linear),
     );
 
