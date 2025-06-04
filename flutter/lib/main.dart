@@ -245,33 +245,40 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
   void initState() {
     super.initState();
 
+    final baseY   = -1.0;
+    final jumpY   = -1.1;
+    final startX  =  2.0;
+    final targetX = -1.0;
+    final endX    = -2.0;
+
+    final start      = Alignment(startX,  baseY);
+    final targetBase = Alignment(targetX, baseY);
+    final targetJump = Alignment(targetX, jumpY);
+    final end        = Alignment(endX,    baseY);
+
+    const durationSeconds = 2;
+
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: durationSeconds),
     );
     _animation = TweenSequence<Alignment>([
       // right to left
       TweenSequenceItem(
-        tween: Tween(
-          begin: Alignment(1.0, 0.0), 
-          end:   Alignment(-1.0, 0.0),
-        ).chain(CurveTween(curve: Curves.easeOut)),
+        tween: Tween(begin: start, end: targetBase),
         weight: 20,
       ),
       // stop a while
       TweenSequenceItem(
-        tween: Tween(
-          begin: Alignment(-1.0, 0.0), 
-          end: Alignment(-1.0, 0.0),
-        ),
-        weight: 5,
+        tween: Tween(begin: targetBase, end:targetBase),
+        weight: 10,
       ),
       // eat, first one bounce
       for (var i = 0; i < 2; i++) 
         TweenSequenceItem(
           tween: Tween(
-            begin: Alignment(-1.0, i % 2 == 0 ? 0.0 : 0.1),
-            end:   Alignment(-1.0, i % 2 == 0 ? 0.1 : 0.0),
+            begin: i % 2 == 0 ? targetBase : targetJump,
+            end:   i % 2 == 0 ? targetJump : targetBase,
           ),
           weight: 8,
         )
@@ -280,17 +287,19 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
       for (var i = 0; i < 4; i++) 
         TweenSequenceItem(
           tween: Tween(
-            begin: Alignment(-1.0, i % 2 == 0 ? 0.0 : 0.1),
-            end:   Alignment(-1.0, i % 2 == 0 ? 0.1 : 0.0),
+            begin: i % 2 == 0 ? targetBase : targetJump,
+            end:   i % 2 == 0 ? targetJump : targetBase,
           ),
           weight: 6,
         )
       ,
+      // stop a while
       TweenSequenceItem(
-        tween: Tween(
-          begin: Alignment(-1.0, 0.0),
-          end:   Alignment(-2.0, 0.0), 
-        ), 
+        tween: Tween( begin: targetBase, end: targetBase),
+        weight: 10,
+      ),
+      TweenSequenceItem(
+        tween: Tween(begin: targetBase, end: end), 
         weight: 20,
       ),
     ]).animate(
