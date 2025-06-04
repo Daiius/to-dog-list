@@ -23,15 +23,20 @@ class HomePage extends StatelessWidget {
   const HomePage({ super.key });
   @override
   Widget build(BuildContext context) {
+    final dogController = AnimatedDogController();
+
     return Scaffold(
       body: Center(
         child: Container(
           color: Theme.of(context).colorScheme.primaryContainer,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+          padding: EdgeInsets.all(20.0),
+          child: Stack(
             children: [
-              TaskPage(),
-              DogImage(),
+              TaskPage(onTaskSubmitted: dogController.startAnimation),
+              Align(
+                alignment: Alignment.bottomLeft,
+                child: AnimatedDog(controller: dogController),
+              ),
             ],
           ),
         ),
@@ -42,7 +47,8 @@ class HomePage extends StatelessWidget {
 
 
 class TaskPage extends StatefulWidget {
-  const TaskPage({ super.key });
+  const TaskPage({ super.key, required this.onTaskSubmitted });
+  final VoidCallback onTaskSubmitted;
   @override
   State<TaskPage> createState() => _TaskPageState();
 }
@@ -54,6 +60,7 @@ class _TaskPageState extends State<TaskPage> {
     setState(() {
       currentTask = newTask;
     });
+    widget.onTaskSubmitted();
   }
   
   @override
@@ -147,13 +154,7 @@ class _TaskInputState extends State<TaskInput> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            Text('New To-Do'),
-            Text('g', style: hiddenTextStyle),
-            Text(':'),
-          ],
-        ),
+        NewToDoLabel(hiddenTextStyle: hiddenTextStyle),
         Row(
           children: [
             Icon(Icons.edit, size: 40.0, color: theme.colorScheme.primary),
@@ -183,6 +184,89 @@ class _TaskInputState extends State<TaskInput> {
         ),
       ],
     );
+  }
+}
+
+class NewToDoLabel extends StatelessWidget {
+  const NewToDoLabel({
+    super.key,
+    required this.hiddenTextStyle,
+  });
+
+  final TextStyle hiddenTextStyle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text('New To-Do'),
+        Text('g', style: hiddenTextStyle),
+        Text(':'),
+      ],
+    );
+  }
+}
+
+class AnimatedDog extends StatefulWidget {
+  const AnimatedDog({ super.key, required this.controller });
+  final AnimatedDogController controller;
+  @override
+  State<AnimatedDog> createState() => _AnimatedDogState();
+}
+
+class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<Alignment> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 5),
+    );
+    _animation = Tween<Alignment>(
+      begin: Alignment(1.0, 0.0), 
+      end:   Alignment(0.0, 0.0)
+    ).animate(
+      CurvedAnimation(parent: _controller, curve: Curves.linear),
+    );
+
+    widget.controller.bind(() {
+      _controller.reset();
+      _controller.forward();
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        return Align(
+          alignment: _animation.value,
+          child: child!,
+        );
+      },
+      child: DogImage(),
+    );
+  }
+}
+
+class AnimatedDogController {
+  void Function()? _start;
+  void bind(void Function() startAnimation) {
+    _start = startAnimation;
+  }
+  void startAnimation() {
+    _start?.call();
   }
 }
 
