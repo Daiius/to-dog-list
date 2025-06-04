@@ -258,24 +258,32 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
         ).chain(CurveTween(curve: Curves.easeOut)),
         weight: 20,
       ),
+      // stop a while
+      TweenSequenceItem(
+        tween: Tween(
+          begin: Alignment(-1.0, 0.0), 
+          end: Alignment(-1.0, 0.0),
+        ),
+        weight: 5,
+      ),
       // eat, first one bounce
       for (var i = 0; i < 2; i++) 
         TweenSequenceItem(
           tween: Tween(
-            begin: Alignment(-1.0, i % 2 == 0 ? 0.1 : 0.0),
-            end:   Alignment(-1.0, i % 2 == 0 ? 0.0 : 0.1),
+            begin: Alignment(-1.0, i % 2 == 0 ? 0.0 : 0.1),
+            end:   Alignment(-1.0, i % 2 == 0 ? 0.1 : 0.0),
           ),
-          weight: 20,
+          weight: 8,
         )
       ,
       // eat, last two bounce
       for (var i = 0; i < 4; i++) 
         TweenSequenceItem(
           tween: Tween(
-            begin: Alignment(-1.0, i % 2 == 0 ? 0.1 : 0.0),
-            end:   Alignment(-1.0, i % 2 == 0 ? 0.0 : 0.1),
+            begin: Alignment(-1.0, i % 2 == 0 ? 0.0 : 0.1),
+            end:   Alignment(-1.0, i % 2 == 0 ? 0.1 : 0.0),
           ),
-          weight: 20,
+          weight: 6,
         )
       ,
       TweenSequenceItem(
