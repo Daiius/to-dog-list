@@ -38,16 +38,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Container(
-          color: Theme.of(context).colorScheme.primaryContainer,
-          padding: EdgeInsets.all(20.0),
-          child: Stack(
-            children: [
-              TaskPage(onTaskSubmitted: dogController.startAnimation),
-              AnimatedDog(controller: dogController),
-            ],
-          ),
+      body: Container(
+        color: Theme.of(context).colorScheme.primaryContainer,
+        //padding: EdgeInsets.all(20.0),
+        child: Column(
+          children: [
+            Spacer(flex: 3),
+            Expanded(
+              flex: 7,
+              child: Stack(
+                children: [
+                  TaskPage(onTaskSubmitted: dogController.startAnimation),
+                  AnimatedDog(controller: dogController),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
@@ -245,8 +251,8 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
   void initState() {
     super.initState();
 
-    final baseY   = -1.0;
-    final jumpY   = -1.1;
+    final baseY   = -1.5;
+    final jumpY   = -1.6;
     final startX  =  2.0;
     final targetX = -1.0;
     final endX    = -2.0;
