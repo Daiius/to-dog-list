@@ -17,15 +17,23 @@ class MainLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext build) {
-    return Stack(
+    return Column(
       children: [
-        Column(
-          children: [
-            currentTask,
-            taskInput,
-          ],
+        Expanded(child: SizedBox(height: 0)),
+        Expanded(
+          flex: 3,
+          child: Stack(
+            children: [
+              Column(
+                children: [
+                  currentTask,
+                  taskInput,
+                ],
+              ),
+              animatedDog, // 上に表示されるように後から置く
+            ],
+          ),
         ),
-        animatedDog,
       ],
     );
   }
