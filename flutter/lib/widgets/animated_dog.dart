@@ -19,9 +19,9 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
 
     final baseY   = -1.8;
     final jumpY   = -1.9;
-    final startX  =  1.3;
-    final targetX = -1.0;
-    final endX    = -1.6;
+    final startX  =  1.0;
+    final targetX = -0.5;
+    final endX    = -1.0;
 
     final start      = Alignment(startX,  baseY);
     final targetBase = Alignment(targetX, baseY);
@@ -97,7 +97,10 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
       builder: (context, child) {
         return Align(
           alignment: _animation.value,
-          child: child!
+          child: FractionalTranslation(
+            translation: Offset(_animation.value.x, 0.0),
+            child: child!
+          ),
         );
       },
       child: DogImage(),
