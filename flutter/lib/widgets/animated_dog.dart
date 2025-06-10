@@ -18,7 +18,7 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
     super.initState();
 
     final baseY   = -1.8;
-    final jumpY   = -1.9;
+    final jumpY   = -1.8;
     final startX  =  1.0;
     final targetX = -0.5;
     final endX    = -1.0;
@@ -28,12 +28,13 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
     final targetJump = Alignment(targetX, jumpY);
     final end        = Alignment(endX,    baseY);
 
-    const durationSeconds = 2;
+    const durationMilliSeconds = 2000;
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: durationSeconds),
+      duration: const Duration(milliseconds: durationMilliSeconds),
     );
+
     _animation = TweenSequence<Alignment>([
       // right to left
       TweenSequenceItem(
