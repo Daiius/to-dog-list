@@ -11,47 +11,67 @@ class AnimatedDog extends StatefulWidget {
 /// 犬の画像のアニメーション状態を保持します
 class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
-  late final Animation<Alignment> _animation;
+
+  // 犬をアニメーションさせる方法を定義します
+  // 1. 画面外右側から、おおよそタスク表示位置まで移動します
+  // 2. おおよそタスク表示位置で停止し、何度か上下動します
+  // 3. 画面左端外へ抜けていきます
+  // 
+  // 1,3 は確実に画面外に動かせるよう、相対位置指定します
+  // 2   はTask表示サイズを基準に、今は簡易的に絶対位置指定します
+  late final Animation<double> _xAnimationFirst;
+  late final Animation<double> _xAnimationSecond;
+  late final Animation<double> _yAnimation;
+
+  final animationBreak = 0.3;
+  final jumpStart = 0.4;
+  final jumpEnd = 0.8;
+  final animationRestart = 0.9;
+
+  final xTarget = -0.5;
+
+  Animation<double> getActiveXAnimation(AnimationController controller) {
+    if (controller.value <= animationBreak) {
+      return _xAnimationFirst;
+    }
+    return _xAnimationSecond;
+  }
+
 
   @override
   void initState() {
     super.initState();
 
-    final baseY   = -1.8;
-    final jumpY   = -1.8;
-    final startX  =  1.0;
-    final targetX = -0.5;
-    final endX    = -1.0;
+    const durationSeconds = 2;
 
-    final start      = Alignment(startX,  baseY);
-    final targetBase = Alignment(targetX, baseY);
-    final targetJump = Alignment(targetX, jumpY);
-    final end        = Alignment(endX,    baseY);
-
-    const durationMilliSeconds = 2000;
+    const baseY = -10.0;
+    const jumpY = -30.0;
 
     _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: durationMilliSeconds),
+      duration: const Duration(seconds: durationSeconds),
     );
 
-    _animation = TweenSequence<Alignment>([
-      // right to left
-      TweenSequenceItem(
-        tween: Tween(begin: start, end: targetBase),
-        weight: 20,
+    _xAnimationFirst = Tween<double>(begin: 1.0, end: xTarget).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Interval(0.0, animationBreak),
       ),
-      // stop a while
-      TweenSequenceItem(
-        tween: Tween(begin: targetBase, end:targetBase),
-        weight: 10,
+    );
+    _xAnimationSecond = Tween<double>(begin: xTarget, end: -1.0).animate(
+      CurvedAnimation(
+        parent: _controller,
+        curve: Interval(animationRestart, 1.0),
       ),
+    );
+
+    _yAnimation = TweenSequence<double>([
       // eat, first one bounce
       for (var i = 0; i < 2; i++) 
         TweenSequenceItem(
           tween: Tween(
-            begin: i % 2 == 0 ? targetBase : targetJump,
-            end:   i % 2 == 0 ? targetJump : targetBase,
+            begin: i % 2 == 0 ? baseY : jumpY,
+            end:   i % 2 == 0 ? jumpY : baseY,
           ),
           weight: 8,
         )
@@ -60,23 +80,16 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
       for (var i = 0; i < 4; i++) 
         TweenSequenceItem(
           tween: Tween(
-            begin: i % 2 == 0 ? targetBase : targetJump,
-            end:   i % 2 == 0 ? targetJump : targetBase,
+            begin: i % 2 == 0 ? baseY : jumpY,
+            end:   i % 2 == 0 ? jumpY : baseY,
           ),
           weight: 6,
         )
-      ,
-      // stop a while
-      TweenSequenceItem(
-        tween: Tween( begin: targetBase, end: targetBase),
-        weight: 10,
-      ),
-      TweenSequenceItem(
-        tween: Tween(begin: targetBase, end: end), 
-        weight: 20,
-      ),
     ]).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.linear),
+      CurvedAnimation(
+        parent: _controller, 
+        curve: Interval(jumpStart, jumpEnd),
+      ),
     );
 
     widget.controller.bind(() {
@@ -96,11 +109,20 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
-        return Align(
-          alignment: _animation.value,
-          child: FractionalTranslation(
-            translation: Offset(_animation.value.x, 0.0),
-            child: child!
+        return Transform.translate(
+          offset: Offset(0.0, _yAnimation.value), 
+          child: Align(
+            alignment: Alignment(
+              getActiveXAnimation(_controller).value,
+              -1.0,
+            ),
+            child: FractionalTranslation(
+              translation: Offset(
+                getActiveXAnimation(_controller).value, 
+                -0.5
+              ),
+              child: child!
+            ),
           ),
         );
       },
