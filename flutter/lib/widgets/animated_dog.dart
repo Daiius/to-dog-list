@@ -114,12 +114,12 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
           child: Align(
             alignment: Alignment(
               getActiveXAnimation(_controller).value,
-              0.0,
+              -1.0,
             ),
             child: FractionalTranslation(
               translation: Offset(
                 getActiveXAnimation(_controller).value, 
-                0.0
+                -0.5
               ),
               child: child!
             ),
