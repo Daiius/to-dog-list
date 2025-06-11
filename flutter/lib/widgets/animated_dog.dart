@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utils.dart';
 
 /// 画面の端から端までアニメーションする犬のwidgetです
 class AnimatedDog extends StatefulWidget {
@@ -30,6 +31,8 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
 
   final xTarget = -0.5;
 
+  var dogImageIndex = 0;
+
   Animation<double> getActiveXAnimation(AnimationController controller) {
     if (controller.value <= animationBreak) {
       return _xAnimationFirst;
@@ -50,7 +53,11 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: durationSeconds),
-    );
+    )..addStatusListener((status) {
+      if (status == AnimationStatus.completed) {
+        dogImageIndex++;
+      }
+    });
 
     _xAnimationFirst = Tween<double>(begin: 1.0, end: xTarget).animate(
       CurvedAnimation(
@@ -126,7 +133,7 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
           ),
         );
       },
-      child: DogImage(),
+      child: DogImage(dogImageIndex: dogImageIndex),
     );
   }
 }
@@ -142,13 +149,23 @@ class AnimatedDogController {
 }
 
 class DogImage extends StatelessWidget {
-  const DogImage({ super.key });
+  const DogImage({ super.key, required this.dogImageIndex });
+
+  final int dogImageIndex;
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset(
-      'public/dogs/dog_american_cocker_spaniel.png',
-      width: 200,
+    final asset = getDogImageWithIndex(dogImageIndex);
+    return Transform(
+      alignment: Alignment.center,
+      transform: Matrix4.identity()..scale(
+        asset.loveToRunBackwards ? -1.0 : 1.0, 
+        1.0
+      ),
+      child: Image.asset(
+        asset.assetPath,
+        width: 200,
+      )
     );
   }
 }
