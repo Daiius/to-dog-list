@@ -10,6 +10,8 @@ class AnimatedDog extends StatefulWidget {
 }
 
 /// 犬の画像のアニメーション状態を保持します
+/// アニメーション中のある地点でCurrentTaskを消去するためのonReachTargetと、
+/// アニメーション開始時にTaskInputのsubmitを無効化する機能を持ちます
 class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
 
@@ -24,6 +26,7 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
   late final Animation<double> _xAnimationSecond;
   late final Animation<double> _yAnimation;
 
+
   final animationBreak = 0.3;
   final jumpStart = 0.4;
   final jumpEnd = 0.8;
@@ -32,6 +35,7 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
   final xTarget = -0.5;
 
   var dogImageIndex = 0;
+  var _hasReachedTarget = false;
 
   Animation<double> getActiveXAnimation(AnimationController controller) {
     if (controller.value <= animationBreak) {
@@ -50,12 +54,23 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
     const baseY = -10.0;
     const jumpY = -30.0;
 
+    widget.controller;
+
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: durationSeconds),
-    )..addStatusListener((status) {
+    )
+    ..addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         dogImageIndex++;
+        _hasReachedTarget = false;
+        widget.controller.notifyComplete();
+      }
+    })
+    ..addListener(() {
+      if (_controller.value >= jumpStart && !_hasReachedTarget) {
+        _hasReachedTarget = true;
+        widget.controller.callOnReachTarget();
       }
     });
 
@@ -101,6 +116,7 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
 
     widget.controller.bind(() {
       _controller.reset();
+      widget.controller.notifyStart();
       _controller.forward();
     });
   }
@@ -140,11 +156,29 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
 
 class AnimatedDogController {
   void Function()? _start;
+  void Function()? _onReachTarget;
+  void Function()? _onStart;
+  void Function()? _onComplete;
+
+  void setOnStart(void Function() callback) {
+    _onStart = callback;
+  }
+  void setOnComplete(void Function() callback) {
+    _onComplete = callback;
+  }
+  void notifyStart() => _onStart?.call();
+  void notifyComplete() => _onComplete?.call();
   void bind(void Function() startAnimation) {
     _start = startAnimation;
   }
   void startAnimation() {
     _start?.call();
+  }
+  void setOnReachTarget(void Function() callback) {
+    _onReachTarget = callback;
+  }
+  void callOnReachTarget() {
+    _onReachTarget?.call();
   }
 }
 

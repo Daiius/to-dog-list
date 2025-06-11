@@ -5,8 +5,10 @@ class TaskInput extends StatefulWidget {
   const TaskInput({ 
     super.key,
     required this.onSubmitted,
+    required this.enabled,
   });
   final void Function(String) onSubmitted;
+  final bool enabled;
 
   @override
   State<TaskInput> createState() => _TaskInputState();
@@ -30,6 +32,7 @@ class _TaskInputState extends State<TaskInput> {
     return TaskInputLayout(
       newToDoLabel: NewToDoLabel(hiddenTextStyle: hiddenTextStyle),
       textField: TextField(
+        enabled: widget.enabled,
         decoration: InputDecoration(
           hintText: 'New task...',
           hintStyle: halfOpacityTextStyle,

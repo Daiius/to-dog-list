@@ -1,22 +1,46 @@
 import 'package:flutter/material.dart';
 import '../utils.dart';
 
-class CurrentTask extends StatelessWidget {
+// 現在登録されているタスクを表示します
+// 何も登録されていない時は、"you have nothing to do :)"と表示します
+// タスク内容あり→なしに変化する際には、AnimatedSwitcherを使用してタスクがフェードアウトします
+class CurrentTask extends StatefulWidget {
   const CurrentTask({ 
     super.key,
     required this.currentTask,
   });
   final String currentTask;
+
+  @override
+  State<CurrentTask> createState() => _CurrentTaskState();
+}
+
+class _CurrentTaskState extends State<CurrentTask> {
   @override
   Widget build(BuildContext context) {
     final hiddenTextStyle = getHiddenTextStyle(context);
+    final theme = Theme.of(context);
 
     return CurrentTaskLayout(
       todoListLabel: ToDoListLabel(hiddenTextStyle: hiddenTextStyle),
-      text: Text(
-        currentTask.isEmpty
-        ? 'You have nothing to do :)'
-        : currentTask
+      text: AnimatedSwitcher(
+        duration: 
+          widget.currentTask.isEmpty 
+          ? Duration(milliseconds: 2000)
+          : Duration(milliseconds: 200),
+        transitionBuilder: (child, animation) {
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
+        },
+        child: Text(
+          widget.currentTask.isEmpty
+          ? 'You have nothing to do :)'
+          : widget.currentTask,
+          key: ValueKey<String>(widget.currentTask),
+          style: theme.textTheme.bodyMedium,
+        ),
       )
     );
   }
@@ -30,7 +54,7 @@ class CurrentTaskLayout extends StatelessWidget {
   });
 
   final ToDoListLabel todoListLabel;
-  final Text text;
+  final Widget text;
   
   @override
   Widget build(BuildContext context) {
