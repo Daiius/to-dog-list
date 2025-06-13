@@ -23,25 +23,13 @@ class _CurrentTaskState extends State<CurrentTask> {
 
     return CurrentTaskLayout(
       todoListLabel: ToDoListLabel(hiddenTextStyle: hiddenTextStyle),
-      text: AnimatedSwitcher(
-        duration: 
-          widget.currentTask.isEmpty 
-          ? Duration(milliseconds: 2000)
-          : Duration(milliseconds: 200),
-        transitionBuilder: (child, animation) {
-          return FadeTransition(
-            opacity: animation,
-            child: child,
-          );
-        },
-        child: Text(
-          widget.currentTask.isEmpty
-          ? 'You have nothing to do :)'
-          : widget.currentTask,
-          key: ValueKey<String>(widget.currentTask),
-          style: theme.textTheme.bodyMedium,
-        ),
-      )
+      text: Text(
+        widget.currentTask.isEmpty
+        ? 'You have nothing to do :)'
+        : widget.currentTask,
+        key: ValueKey<String>(widget.currentTask),
+        style: theme.textTheme.bodyMedium,
+      ),
     );
   }
 }

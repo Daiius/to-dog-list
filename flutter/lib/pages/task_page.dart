@@ -14,6 +14,7 @@ class _TaskPageState extends State<TaskPage> {
   var currentTask = '';
   var isAnimating = false;
   late final AnimatedDogController dogController;
+  final FocusNode _focusNode = FocusNode();
   
   @override
   void initState() {
@@ -32,6 +33,7 @@ class _TaskPageState extends State<TaskPage> {
       ..setOnComplete(() {
         setState(() {
           isAnimating = false;
+          _focusNode.requestFocus();
         });
       });
   }
@@ -50,7 +52,8 @@ class _TaskPageState extends State<TaskPage> {
       currentTask: CurrentTask(currentTask: currentTask),
       taskInput: TaskInput(
         onSubmitted: onSubmitted,
-        enabled: !isAnimating
+        enabled: !isAnimating,
+        focusNode: _focusNode,
       ),
       animatedDog: AnimatedDog(controller: dogController),
     );

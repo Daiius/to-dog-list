@@ -32,7 +32,7 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
   final jumpEnd = 0.8;
   final animationRestart = 0.9;
 
-  final xTarget = -0.5;
+  final xTarget = -0.4;
 
   var dogImageIndex = 0;
   var _hasReachedTarget = false;
@@ -68,7 +68,7 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
       }
     })
     ..addListener(() {
-      if (_controller.value >= jumpStart && !_hasReachedTarget) {
+      if (_controller.value >= jumpEnd && !_hasReachedTarget) {
         _hasReachedTarget = true;
         widget.controller.callOnReachTarget();
       }
@@ -142,7 +142,7 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
             child: FractionalTranslation(
               translation: Offset(
                 getActiveXAnimation(_controller).value, 
-                -0.5
+                -0.4
               ),
               child: child!
             ),

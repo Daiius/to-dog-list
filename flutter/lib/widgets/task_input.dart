@@ -6,9 +6,11 @@ class TaskInput extends StatefulWidget {
     super.key,
     required this.onSubmitted,
     required this.enabled,
+    required this.focusNode,
   });
   final void Function(String) onSubmitted;
   final bool enabled;
+  final FocusNode focusNode;
 
   @override
   State<TaskInput> createState() => _TaskInputState();
@@ -32,7 +34,8 @@ class _TaskInputState extends State<TaskInput> {
     return TaskInputLayout(
       newToDoLabel: NewToDoLabel(hiddenTextStyle: hiddenTextStyle),
       textField: TextField(
-        enabled: widget.enabled,
+        focusNode: widget.focusNode,
+        //enabled: widget.enabled,
         decoration: InputDecoration(
           hintText: 'New task...',
           hintStyle: halfOpacityTextStyle,
