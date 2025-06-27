@@ -12,15 +12,34 @@ class TaskPage extends StatefulWidget {
 
 class _TaskPageState extends State<TaskPage> {
   var currentTask = '';
+  var isAnimating = false;
   late final AnimatedDogController dogController;
+  final FocusNode _focusNode = FocusNode();
   
   @override
   void initState() {
     super.initState();
-    dogController = AnimatedDogController();
+    dogController = AnimatedDogController()
+      ..setOnReachTarget(() {
+        setState(() {
+          currentTask = '';
+        });
+      })
+      ..setOnStart(() {
+        setState(() {
+          isAnimating = true;
+        });
+      })
+      ..setOnComplete(() {
+        setState(() {
+          isAnimating = false;
+          _focusNode.requestFocus();
+        });
+      });
   }
 
   void onSubmitted(String newTask) {
+    if (isAnimating) return; // アニメーション中は無視
     setState(() {
       currentTask = newTask;
     });
@@ -31,7 +50,11 @@ class _TaskPageState extends State<TaskPage> {
   Widget build(BuildContext context) {
     return MainLayout(
       currentTask: CurrentTask(currentTask: currentTask),
-      taskInput: TaskInput(onSubmitted: onSubmitted),
+      taskInput: TaskInput(
+        onSubmitted: onSubmitted,
+        enabled: !isAnimating,
+        focusNode: _focusNode,
+      ),
       animatedDog: AnimatedDog(controller: dogController),
     );
   }
