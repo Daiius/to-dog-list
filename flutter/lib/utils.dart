@@ -26,3 +26,4 @@ TextStyle getHalfOpacityTextStyle(BuildContext context) {
 
   return assets[dogImageIndex % assets.length];
 }
+
