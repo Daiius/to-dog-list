@@ -27,14 +27,14 @@
      showguides="false"
      inkscape:lockguides="false"
      inkscape:zoom="4.7667575"
-     inkscape:cx="50.138904"
+     inkscape:cx="50.243798"
      inkscape:cy="57.586315"
      inkscape:window-width="888"
      inkscape:window-height="890"
-     inkscape:window-x="-1"
-     inkscape:window-y="39"
+     inkscape:window-x="0"
+     inkscape:window-y="38"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer10">
+     inkscape:current-layer="layer7">
     <inkscape:grid
        id="grid1"
        units="px"
@@ -178,7 +178,7 @@
      id="layer7"
      inkscape:label="eye">
     <circle
-       style="display:inline;fill:#311b00;fill-opacity:1;stroke:none;stroke-width:1.42958;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       style="display:none;fill:#311b00;fill-opacity:1;stroke:none;stroke-width:1.42958;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
        id="path15"
        cx="7.429574"
        cy="23.999998"
