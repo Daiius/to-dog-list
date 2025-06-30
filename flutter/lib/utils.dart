@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 
 TextStyle getHiddenTextStyle(BuildContext context) {
-  final base = Theme.of(context).textTheme.bodySmall!;
+  final base = Theme.of(context).textTheme.bodyLarge!;
   return base.copyWith(color: base.color!.withValues(alpha: 0.1));
 }
+
+TextStyle getTextStyle(BuildContext context) {
+  final base = Theme.of(context).textTheme.bodyLarge!;
+  return base;
+}
+
 TextStyle getHalfOpacityTextStyle(BuildContext context) {
-  final base = Theme.of(context).textTheme.bodyMedium!;
+  final base = Theme.of(context).textTheme.bodyLarge!;
   return base.copyWith(color: base.color!.withValues(alpha: 0.5));
 }
 

@@ -28,11 +28,15 @@ class _TaskInputState extends State<TaskInput> {
   @override
   Widget build(BuildContext context) {
     final hiddenTextStyle = getHiddenTextStyle(context);
+    final textStyle = getTextStyle(context);
     final halfOpacityTextStyle = getHalfOpacityTextStyle(context);
     final theme = Theme.of(context);
 
     return TaskInputLayout(
-      newToDoLabel: NewToDoLabel(hiddenTextStyle: hiddenTextStyle),
+      newToDoLabel: NewToDoLabel(
+        hiddenTextStyle: hiddenTextStyle,
+        textStyle: textStyle,
+      ),
       textField: TextField(
         focusNode: widget.focusNode,
         //enabled: widget.enabled,
@@ -56,17 +60,19 @@ class NewToDoLabel extends StatelessWidget {
   const NewToDoLabel({
     super.key,
     required this.hiddenTextStyle,
+    required this.textStyle,
   });
 
   final TextStyle hiddenTextStyle;
+  final TextStyle textStyle;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text('New To-Do'),
+        Text('New To-Do', style: textStyle),
         Text('g', style: hiddenTextStyle),
-        Text(':'),
+        Text(':', style: textStyle),
       ],
     );
   }
