@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100"
+   height="100"
+   viewBox="0 0 100 100"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4.2 (ebf0e940, 2025-05-08)"
+   sodipodi:docname="great_pyrenees.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="false"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="true"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="mm"
+     showgrid="true"
+     showguides="false"
+     inkscape:lockguides="false"
+     inkscape:zoom="7.3711552"
+     inkscape:cx="46.05791"
+     inkscape:cy="69.256444"
+     inkscape:window-width="1472"
+     inkscape:window-height="890"
+     inkscape:window-x="0"
+     inkscape:window-y="38"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer3"
+     labelstyle="default">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="0"
+       originy="0"
+       spacingx="0.1"
+       spacingy="0.1"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       enabled="true"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="tail"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#e5e5e5;fill-opacity:1;stroke:#303030;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers stroke fill"
+       d="M 92.000001,57.000001 C 92.694124,61.27738 92.694124,65.722622 92.000001,70.000001 91.324613,74.161927 88.000001,82.000001 88.000001,82.000001 88.000001,82.000001 93.327881,80.103864 95.000001,78.000001 97.165331,75.275582 97.780364,71.473165 98.000001,68.000001 98.383897,61.929365 98.951545,54.624426 95.000002,50.000001 93.630462,48.397252 89.000002,48.000001 89.000002,48.000001 89.000002,48.000001 91.493461,53.878556 92.000001,57.000001 Z"
+       id="path6"
+       sodipodi:nodetypes="aacaaaca" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="body">
+    <path
+       style="fill:#e5e5e5;fill-opacity:1;stroke:#303030;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers stroke fill"
+       d="M 16,44.000001 C 15.576652,48.694998 16.832202,53.432894 18,58.000001 19.411056,63.518458 19.89846,70.047557 24,74.000001 27.036097,76.925731 31.838075,77.324613 36.000001,78.000001 44.554759,79.388247 53.445243,79.388247 62.000001,78.000001 64.080964,77.662307 66.052292,76.806769 68.000001,76.000001 69.377239,75.42953 70.58236,74.460995 72.000001,74.000001 75.856402,72.745962 80.394271,73.855574 84.000001,72.000001 86.514947,70.705765 88.513009,68.406005 90.000001,66.000001 91.10834,64.206672 91.662307,62.080964 92.000001,60.000001 92.427154,57.367768 92.427154,54.632234 92.000001,52.000001 91.662307,49.919038 91.60275,47.369541 90.000001,46.000001 88.458526,44.68282 86.025357,45.095102 84.000001,45.000001 79.326594,44.780561 74.678544,45.988914 70.000001,46.000001 59.977832,46.02375 49.711901,46.47456 40.000001,44.000001 35.375158,42.821607 27,38 27,38 27,38 20.433726,36.24587 18,38.000001 16.289751,39.232679 16.189327,41.900334 16,44.000001 Z"
+       id="path3"
+       sodipodi:nodetypes="aaaaaaaaaaaaaaacaa" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer8"
+     inkscape:label="left_back_leg">
+    <path
+       style="fill:#e5e5e5;fill-opacity:1;stroke:#303030;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers stroke fill"
+       d="M 74.000001,60.000001 C 71.891816,64.216371 71.438927,69.319465 72.000001,74.000001 72.427302,77.564591 76.000001,84.000001 76.000001,84.000001 77.333334,85.333334 78.666668,86.000001 80.000001,86.000001 84.964055,86.54954 90.70819,87.004303 92.000001,88.000001 92.993896,90.691839 94.000081,93.384622 94.000001,96.000001 91.333334,96.666668 90.000002,97.333335 90.000001,98.000001 90.000002,98.666668 90.666666,99.333334 92.000001,100 H 98.000001 C 100.00915,96.849306 96.250176,91.14271 96.500001,89.500001 94.199989,82.833334 90.425669,79.586386 90.000001,74.000001 89.79116,71.259209 92.000001,68.748738 92.000001,66.000001 92.000001,63.251264 91.18133,60.481939 90.000001,58.000001 88.567429,54.990209 87.324948,50.236298 84.000001,50.000001 79.297815,49.665827 76.108186,55.783631 74.000001,60.000001 Z"
+       id="path5"
+       sodipodi:nodetypes="aaccccccccaaaaa" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="left_front_leg">
+    <path
+       style="fill:#e5e5e5;fill-opacity:1;stroke:#303030;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers stroke fill"
+       d="M 20,67.000001 C 20.70931,70.964733 23.13345,74.424191 25,78.000001 25.159584,82.701876 24.333374,87.333337 24,92.000001 22.666667,95.333335 21.333334,97.333335 20,98.000001 18.666667,98.333335 18,98.666668 18,99.000001 18.333333,99.660284 18.666666,99.993619 19,100 H 24 C 23.873539,100.11162 26.225294,96.706033 28,94.000001 29.968862,90.997924 30.52929,87.275043 32,84.000001 33.221359,81.280227 35.692977,78.965574 36.000001,76.000001 36.674407,69.485857 34.80549,62.329836 31,57.000001 29.60325,55.043763 25,53.000001 25,53.000001 23.285909,52.14046 19.04735,61.675104 20,67.000001 Z"
+       id="path4"
+       sodipodi:nodetypes="sccccccsaaacs" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="head">
+    <path
+       style="fill:#e5e5e5;fill-opacity:1;stroke:#303030;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers stroke fill"
+       d="M 21,32 C 19.460201,31.362195 17.65418,31.796362 16,32 14.635929,32.167925 13.12343,32.208298 12,33 10.035178,34.384649 8.0000001,39.000001 8.0000001,39.000001 5,39.666667 2.6666667,40.333334 1.0000002,41.000001 1.0913195,44.150696 2.1546878,45.357292 3.0000002,47.000001 3.0000002,47.000001 8.406127,47.297118 11,48.000001 13.450225,48.663959 18,51.000001 18,51.000001 18,51.000001 23.400497,49.971304 25,48.000001 27.141844,45.360292 27,38 27,38 27,38 23.613126,33.082393 21,32 Z"
+       id="path1"
+       sodipodi:nodetypes="aaacccacaca" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="left_year">
+    <path
+       style="fill:#e5e5e5;fill-opacity:1;stroke:#303030;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers stroke fill"
+       d="M 17,36 C 17,36 17.5,45.000001 19,46.000001 20.240347,46.8269 21.252931,44.941453 22,44.000001 23.770315,41.769059 25,36 25,36 25,36 22.490712,34 21,34 19.509288,34 17,36 17,36 Z"
+       id="path2"
+       sodipodi:nodetypes="csacac" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="face">
+    <path
+       style="fill:none;fill-opacity:1;stroke:#303030;stroke-width:0.25;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers stroke fill"
+       d="M 2.5,44.000001 C 2.3136311,45.570027 2.7846256,46.078647 3,47.000001 4.8332001,46.833401 5.3145945,47.30563 8.0000001,46.712927 8.5914252,46.379593 8.9247591,46.04626 9.0000001,45.712927"
+       id="path9"
+       sodipodi:nodetypes="cccc"
+       inkscape:label="path9_mouth" />
+    <path
+       style="fill:#272727;fill-opacity:1;stroke:#303030;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers stroke fill"
+       d="M 1,41.000001 3.0270271,40.662163 4.5000001,41.500001 C 4.3333334,43.166667 3.3333334,43.166667 2.5,43.500001 1.963232,42.938752 1.3547286,42.908346 1,41.000001 Z"
+       id="path7"
+       sodipodi:nodetypes="ccccc"
+       inkscape:label="path7_nose" />
+    <path
+       style="fill:#272727;fill-opacity:1;stroke:#303030;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;paint-order:markers stroke fill"
+       d="M 13,37.250001 15,38.750001 14,39.750001 12,40.250001 11,38.750001 Z"
+       id="path8"
+       inkscape:label="path8_eye" />
+  </g>
+</svg>
