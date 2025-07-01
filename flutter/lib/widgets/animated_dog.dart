@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-//import '../utils.dart';
+import '../utils.dart';
 
 
 /// 画面の端から端までアニメーションする犬のwidgetです
@@ -144,7 +144,7 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
             child: FractionalTranslation(
               translation: Offset(
                 getActiveXAnimation(_controller).value, 
-                -0.4
+                0.0, //-0.4
               ),
               child: child!
             ),
@@ -191,24 +191,14 @@ class DogImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //final asset = getDogImageWithIndex(dogImageIndex);
-    return Transform(
-      alignment: Alignment.center,
-      transform: Matrix4.identity()..scale(
-        //asset.loveToRunBackwards ? -1.0 : 1.0, 
-        1.0
-      ),
-      child: 
+    final asset = getDogImageWithIndex(dogImageIndex);
+    return 
         SvgPicture.asset(
-          'public/dogs/american_cocker_spaniel.svg',
-          semanticsLabel: 'A dog, american cocker spaniel',
-          width: 200,
-        ),
-        //Image.asset(
-        //  asset.assetPath,
-        //  width: 200,
-        //)
-    );
+          alignment: Alignment.topLeft,
+          asset.path,
+          semanticsLabel: 'A dog',
+          width: asset.size,
+        );
   }
 }
 

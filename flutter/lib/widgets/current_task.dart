@@ -19,16 +19,20 @@ class _CurrentTaskState extends State<CurrentTask> {
   @override
   Widget build(BuildContext context) {
     final hiddenTextStyle = getHiddenTextStyle(context);
+    final textStyle = getTextStyle(context);
     final theme = Theme.of(context);
 
     return CurrentTaskLayout(
-      todoListLabel: ToDoListLabel(hiddenTextStyle: hiddenTextStyle),
+      todoListLabel: ToDoListLabel(
+        hiddenTextStyle: hiddenTextStyle,
+        textStyle: textStyle,
+      ),
       text: Text(
         widget.currentTask.isEmpty
         ? 'You have nothing to do :)'
         : widget.currentTask,
         key: ValueKey<String>(widget.currentTask),
-        style: theme.textTheme.bodyMedium,
+        style: theme.textTheme.bodyLarge,
       ),
     );
   }
@@ -77,17 +81,20 @@ class ToDoListLabel extends StatelessWidget {
   const ToDoListLabel({
     super.key,
     required this.hiddenTextStyle,
+    required this.textStyle,
   });
 
   final TextStyle hiddenTextStyle;
+  final TextStyle textStyle;
 
   @override
   Widget build(BuildContext context) {
+    final textStyle = Theme.of(context).textTheme.bodyLarge;
     return Row(
       children: [
-        Text('To-Do'),
-        Text('g', style: hiddenTextStyle),
-        Text('List:'),
+        Text('To-Do', style: textStyle),
+        Text('g',     style: hiddenTextStyle),
+        Text('List:', style: textStyle),
       ],
     );
   }
