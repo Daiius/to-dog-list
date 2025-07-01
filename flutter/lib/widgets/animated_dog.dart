@@ -34,7 +34,9 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
   final jumpEnd = 0.8;
   final animationRestart = 0.9;
 
-  final xTarget = -0.3;
+  final xStart = 1.0;
+  final xTarget = 0.0;
+  final xEnd = -1.0;
 
   var dogImageIndex = 0;
   var _hasReachedTarget = false;
@@ -76,13 +78,13 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
       }
     });
 
-    _xAnimationFirst = Tween<double>(begin: 1.0, end: xTarget).animate(
+    _xAnimationFirst = Tween<double>(begin: xStart, end: xTarget).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Interval(0.0, animationBreak),
       ),
     );
-    _xAnimationSecond = Tween<double>(begin: xTarget, end: -1.0).animate(
+    _xAnimationSecond = Tween<double>(begin: xTarget, end: xEnd).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Interval(animationRestart, 1.0),
@@ -131,28 +133,22 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        return Transform.translate(
-          offset: Offset(0.0, _yAnimation.value), 
-          child: Align(
-            alignment: Alignment(
-              getActiveXAnimation(_controller).value,
-              -1.0,
-            ),
-            child: FractionalTranslation(
-              translation: Offset(
-                getActiveXAnimation(_controller).value, 
-                0.0, //-0.4
-              ),
-              child: child!
-            ),
-          ),
-        );
-      },
-      child: DogImage(dogImageIndex: dogImageIndex),
-    );
+    final asset = getDogImageWithIndex(dogImageIndex);
+    return LayoutBuilder(builder: (context, constraints) {
+      return AnimatedBuilder(
+        animation: _controller,
+        builder: (context, child) {
+          return Transform.translate(
+            offset: Offset(
+              getActiveXAnimation(_controller).value * constraints.maxWidth + 50, 
+              _yAnimation.value - asset.size / 3,
+            ), 
+            child: child!
+          );
+        },
+        child: DogImage(dogImageIndex: dogImageIndex),
+      );
+    });
   }
 }
 
