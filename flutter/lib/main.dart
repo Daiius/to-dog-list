@@ -28,7 +28,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body: Container(
         color: Theme.of(context).colorScheme.primaryContainer,
-        child: TaskPage(),
+        child: SafeArea(
+          child: TaskPage(),
+        ),
       ),
     );
   }
