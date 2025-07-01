@@ -144,7 +144,7 @@ class _AnimatedDogState extends State<AnimatedDog> with SingleTickerProviderStat
             child: FractionalTranslation(
               translation: Offset(
                 getActiveXAnimation(_controller).value, 
-                -0.4
+                0.0, //-0.4
               ),
               child: child!
             ),
@@ -192,23 +192,13 @@ class DogImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final asset = getDogImageWithIndex(dogImageIndex);
-    return Transform(
-      alignment: Alignment.center,
-      transform: Matrix4.identity()..scale(
-        //asset.loveToRunBackwards ? -1.0 : 1.0, 
-        1.0
-      ),
-      child: 
+    return 
         SvgPicture.asset(
-          asset.path, //'public/dogs/american_cocker_spaniel.svg',
+          alignment: Alignment.topLeft,
+          asset.path,
           semanticsLabel: 'A dog',
-          width: 200,
-        ),
-        //Image.asset(
-        //  asset.assetPath,
-        //  width: 200,
-        //)
-    );
+          width: asset.size,
+        );
   }
 }
 
