@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
-import clsx from 'clsx';
-import Input from '@/components/base/Input';
+import { useState, type KeyboardEvent } from 'react';
+import { clsx } from 'clsx';
+import { Input } from '@/components/base/Input';
 import { 
   Field,
   Label,
@@ -11,18 +11,16 @@ import {
 import { PencilIcon, PlusIcon } from '@heroicons/react/24/outline';
 
 
-const TaskInput: React.FC<
-  React.ComponentProps<'div'>
-  & { 
-    onAddTask: (newTask: string) => void;
-    autoFocus?: boolean;
-  }
-> = ({
+export const TaskInput = ({
   onAddTask,
   autoFocus,
-  ...props
+  className,
+}: { 
+  onAddTask: (newTask: string) => void;
+  autoFocus?: boolean;
+  className?: string;
 }) => {
-  const [newTask, setNewTask] = React.useState<string>("");
+  const [newTask, setNewTask] = useState<string>("");
 
   const handleSubmitTask = () => {
     onAddTask(newTask);
@@ -30,7 +28,7 @@ const TaskInput: React.FC<
   };
 
   return (
-    <Field className={props.className}>
+    <Field className={className}>
       <Label htmlFor='task-input'>New To-Do<span className='dark:text-slate-700 text-slate-300'>g</span>:</Label>
       <div className='flex flex-row'>
         {/* <i className='bi bi-pen text-xl self-center mr-2'/> */}
@@ -39,7 +37,7 @@ const TaskInput: React.FC<
           id='task-input' 
           value={newTask} 
           onChange={(newValue: string) => setNewTask(newValue)}
-          onKeyDown={(e: React.KeyboardEvent) => {
+          onKeyDown={(e: KeyboardEvent) => {
             if (
               !e.nativeEvent.isComposing 
               && e.key === 'Enter'
@@ -65,6 +63,4 @@ const TaskInput: React.FC<
     </Field>
   );
 };
-
-export default TaskInput;
 

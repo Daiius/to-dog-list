@@ -1,5 +1,4 @@
-import React from 'react';
-import useMount from './useMount';
+import { useState, useEffect } from 'react';
 
 export type UseLocalStorageArgs<T> = {
   defaultValue: T;
@@ -13,14 +12,14 @@ export type UseLocalStorage<T> = {
   isLoaded: boolean;
 };
 
-const useLocalStorage = <T,>({
+export const useLocalStorage = <T,>({
   defaultValue,
   key,
   mounted,
 }: UseLocalStorageArgs<T>): UseLocalStorage<T> => {
-  const [currentValue, setCurrentValue] = React.useState<T>(defaultValue);
+  const [currentValue, setCurrentValue] = useState<T>(defaultValue);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (mounted) {
       // localStorageからの読み出しが済んでいるはず
       // 値の書き換えを行う
@@ -41,6 +40,4 @@ const useLocalStorage = <T,>({
     isLoaded: mounted,
   };
 };
-
-export default useLocalStorage;
 

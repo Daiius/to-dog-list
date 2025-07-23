@@ -1,11 +1,10 @@
-import React from 'react';
 import { createRoot } from 'react-dom/client';
 
-import SettingsProvider from '@/providers/SettingsProvider';
+import { SettingsProvider } from '@/providers/SettingsProvider';
 import { ThemeProvider } from 'next-themes';
 
-import MainContainer from '@/components/domain/MainContainer';
-import Header from '@/components/domain/Header';
+import { MainContainer } from '@/components/domain/MainContainer';
+import { Header } from '@/components/domain/Header';
 
 import '@/globals.css';
 

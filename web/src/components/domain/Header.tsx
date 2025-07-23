@@ -1,30 +1,33 @@
 'use client';
 
-import React from 'react';
-import clsx from 'clsx';
+import clsx from 'clsx'
+import { useState } from 'react'
 
-import DogIcon from '@/components/base/DogIcon';
+import { DogIcon } from '@/components/base/DogIcon'
 
 import { 
   Switch, 
   Button,
   Transition, TransitionChild,
   Dialog, DialogPanel, DialogTitle,
-} from '@headlessui/react';
-import { useTheme } from 'next-themes';
-import { useSettings } from '@/providers/SettingsProvider';
-import useMount from '@/hooks/useMount';
-import {InformationCircleIcon, MoonIcon, SunIcon} from '@heroicons/react/24/outline';
+} from '@headlessui/react'
+import { useTheme } from 'next-themes'
+import { useSettings } from '@/providers/SettingsProvider'
+import {
+  InformationCircleIcon, 
+  MoonIcon, 
+  SunIcon,
+} from '@heroicons/react/24/outline'
 
-const ThemeSwitch: React.FC<
-  { className?: string; }
-> = (
+const ThemeSwitch = ({
   className,
-) => {
-  const { setTheme, theme } = useTheme();
-  const { mounted } = useSettings();
+}: {
+  className?: string;
+}) => {
+  const { setTheme, theme } = useTheme()
+  const { mounted } = useSettings()
 
-  if (!mounted) return null;
+  if (!mounted) return null
 
   return (
     <Switch
@@ -58,13 +61,13 @@ const ThemeSwitch: React.FC<
         )}
       />
     </Switch>
-  );
-};
+  )
+}
 
-const HeadingIcon: React.FC<{
-  headingTrained: boolean;
-}> = ({
+const HeadingIcon = ({
   headingTrained,
+}: {
+  headingTrained: boolean;
 }) => (
   <div className='flex flex-row'>
     <DogIcon className='
@@ -77,9 +80,9 @@ const HeadingIcon: React.FC<{
   </div>
 );
 
-const HeadingSwitch: React.FC = () => {
-  const { headingTrained, setHeadingTrained, mounted } = useSettings();
-  if (!mounted) return null;
+const HeadingSwitch = () => {
+  const { headingTrained, setHeadingTrained, mounted } = useSettings()
+  if (!mounted) return null
   return (  
     <Switch
       checked={headingTrained}
@@ -92,21 +95,26 @@ const HeadingSwitch: React.FC = () => {
     >
       <HeadingIcon headingTrained={headingTrained} />
     </Switch>
-  );
+  )
 };
 
-const HelpButton: React.FC<React.ComponentProps<typeof Button>> = (
-  props
-) => (
-  <Button {...props}>
+const HelpButton = ({
+  onClick,
+}: {
+  onClick: () => void;
+}) => (
+  <Button onClick={onClick}>
     <InformationCircleIcon className='size-6'/>
   </Button>
-);
+)
 
-const HelpDialog: React.FC<{
+const HelpDialog = ({
+  open,
+  onClose,
+}: {
   open: boolean;
   onClose: () => void;
-}> = ({ open, onClose, }) => (
+}) => (
   <Transition appear show={open}>  
     <Dialog
       as='div'
@@ -146,20 +154,17 @@ const HelpDialog: React.FC<{
         </div>
     </Dialog>
   </Transition>
-);
+)
 
-const Header: React.FC = () => {
-  const [open, setOpen] = React.useState<boolean>(false);
+export const Header = () => {
+  const [open, setOpen] = useState<boolean>(false)
   return (
-  <div className='w-full flex flex-row p-5 gap-4'>
-    <HelpDialog open={open} onClose={() => setOpen(false)}/>
-    <HeadingSwitch />
-    <HelpButton onClick={() => setOpen(true)}/>
-    <ThemeSwitch />
-
-  </div>
-  );
-};
-
-export default Header;
+    <div className='w-full flex flex-row p-5 gap-4'>
+      <HelpDialog open={open} onClose={() => setOpen(false)}/>
+      <HeadingSwitch />
+      <HelpButton onClick={() => setOpen(true)}/>
+      <ThemeSwitch />
+    </div>
+  )
+}
 

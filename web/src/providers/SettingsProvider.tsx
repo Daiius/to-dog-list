@@ -1,8 +1,12 @@
 'use client';
 
-import React from 'react';
-import useMount from '@/hooks/useMount';
-import useLocalStorage from '@/hooks/useLocalStorage';
+import {
+  createContext,
+  useContext,
+  type ReactNode,
+} from 'react';
+import { useMount } from '@/hooks/useMount';
+import { useLocalStorage } from '@/hooks/useLocalStorage';
 
 export type Settings = {
   headingTrained: boolean; // 犬の向きをそろえるかどうか
@@ -10,16 +14,18 @@ export type Settings = {
   mounted: boolean;
 };
 
-const SettingsContext = React.createContext<Settings|undefined>(undefined);
+const SettingsContext = createContext<Settings|undefined>(undefined);
 
 export const useSettings = () =>
-  React.useContext(SettingsContext)
+  useContext(SettingsContext)
   ?? (() => {
     throw new Error('useSettings() is called out of the context!');
   })();
 
-const SettingsProvider: React.FC<React.PropsWithChildren> = ({
+export const SettingsProvider = ({
   children 
+}: {
+  children: ReactNode;
 }) => {
   // このmountedは、localStorageから
   // 初期値を読み出したか否かの判定に用います
@@ -48,6 +54,4 @@ const SettingsProvider: React.FC<React.PropsWithChildren> = ({
     </SettingsContext.Provider>
   );
 };
-
-export default SettingsProvider;
 

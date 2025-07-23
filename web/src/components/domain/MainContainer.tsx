@@ -1,9 +1,9 @@
 'use client'
-import React from 'react';
+import { useState } from 'react';
 import clsx from 'clsx';
 
-import TaskInput from '@/components/case/TaskInput';
-import TaskList from '@/components/case/TaskList';
+import { TaskInput } from '@/components/case/TaskInput';
+import { TaskList } from '@/components/case/TaskList';
 import { useSettings } from '@/providers/SettingsProvider';
 
 type DogData = {
@@ -28,10 +28,10 @@ const dogData: DogData[] = [
 
 const BASE_PATH = import.meta.env.VITE_BASE_PATH ?? '';
 
-const MainContainer: React.FC = () => {
-  const [tasks, setTasks] = React.useState<string[]>([]);
-  const [dogIndex, setDogIndex] = React.useState<number>(0);
-  const [eaten, setEaten] = React.useState<boolean>(false);
+export const MainContainer = () => {
+  const [tasks, setTasks] = useState<string[]>([]);
+  const [dogIndex, setDogIndex] = useState<number>(0);
+  const [eaten, setEaten] = useState<boolean>(false);
   const { headingTrained, mounted } = useSettings();
 
   return (
@@ -80,7 +80,4 @@ const MainContainer: React.FC = () => {
     </div>
   );
 };
-
-
-export default MainContainer;
 
