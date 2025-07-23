@@ -1,37 +1,33 @@
-import React from 'react';
-import clsx from 'clsx';
+import clsx from 'clsx'
+import type { ReactNode } from 'react'
 
-export const ListItem: React.FC<React.ComponentProps<'div'>> = ({
+export const ListItem = ({
   children,
-  ...props
+  className,
+}: {
+  children: ReactNode
+  className?: string
 }) => (
   <div
     className={clsx(
       'bg-white dark:bg-slate-500',
       'first:rounded-t-lg last:rounded-b-lg',
       'p-2',
-      props.className,
+      className,
     )}
   >
     {children}
   </div>
-);
+)
 
-
-const List: React.FC<React.ComponentProps<'div'>> = ({
+export const List = ({
   children,
-  ...props
+  className,
+}: {
+  children: ReactNode
+  className?: string
 }) => (
-  <div
-    className={clsx(
-      'overflow-y-auto flex flex-col',
-      'divide-y',
-      props.className,
-    )}
-  >
+  <div className={clsx('overflow-y-auto flex flex-col', 'divide-y', className)}>
     {children}
   </div>
-);
-
-export default List;
-
+)

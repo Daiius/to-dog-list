@@ -1,10 +1,7 @@
-import React from 'react';
+import { useState, useEffect } from 'react'
 
-const useMount = (): { mounted: boolean } => {
-  const [mounted, setMounted] = React.useState<boolean>(false);
-  React.useEffect(() => setMounted(true), []);
-  return { mounted };
-};
-
-export default useMount;
-
+export const useMount = (): { mounted: boolean } => {
+  const [mounted, setMounted] = useState<boolean>(false)
+  useEffect(() => setMounted(true), [])
+  return { mounted }
+}

@@ -1,37 +1,33 @@
-'use client';
+'use client'
 
-import React from 'react';
-import clsx from 'clsx';
-import { 
-  Input as HeadlessInput,
-  Button as HeadlessButton,
-} from '@headlessui/react';
+import { KeyboardEvent } from 'react'
+import clsx from 'clsx'
+import { Button as HeadlessButton } from '@headlessui/react'
 
-export type InputProps =
-  & React.ComponentProps<typeof HeadlessInput>
-  & Omit<
-      React.ComponentProps<'input'>,
-      'onChange'
-    >
-  & {
-    onChange: (newValue: string) => void;
-    value: string;
-  };
+export type InputProps = {
+  id?: string
+  value?: string
+  onChange?: (newValue: string) => void
+  onKeyDown?: (e: KeyboardEvent) => void
+  autoFocus?: boolean
+  className?: string
+}
 
-const Input: React.FC<InputProps> = ({
+export const Input = ({
+  id,
   value,
   onChange,
-  ...props
-}) => (
-  <div
-    className={clsx(
-      'flex flex-row', props.className
-    )}
-  >
+  onKeyDown,
+  autoFocus,
+  className,
+}: InputProps) => (
+  <div className={clsx('flex flex-row', className)}>
     <input
-      {...props}
+      id={id}
       value={value}
-      onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
+      onChange={(e) => onChange?.(e.target.value)}
+      onKeyDown={(e) => onKeyDown?.(e)}
+      autoFocus={autoFocus}
       className={clsx(
         'border border-1 border-slate-300 bg-white',
         'rounded-md p-2 w-full',
@@ -43,14 +39,11 @@ const Input: React.FC<InputProps> = ({
     <HeadlessButton
       className={clsx(
         'relative -ml-5',
-        value.length > 0 ? 'visible' : 'invisible'
+        value && value.length > 0 ? 'visible' : 'invisible',
       )}
-      onClick={() => onChange("")}
+      onClick={() => onChange?.('')}
     >
-      <i className='bi bi-x'/>
+      <i className="bi bi-x" />
     </HeadlessButton>
   </div>
-);
-
-export default Input;
-
+)
