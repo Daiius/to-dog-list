@@ -11,11 +11,11 @@ import { HelpButton } from '@/components/case/HelpButton'
 export const Header = () => {
   const [open, setOpen] = useState<boolean>(false)
   return (
-    <div className="w-full flex flex-row p-5 gap-4">
+    <div className="w-full flex flex-row gap-4 p-5 items-center">
       <HelpDialog open={open} onClose={() => setOpen(false)} />
       <HeadingSwitch />
       <HelpButton onClick={() => setOpen(true)} />
-      <ThemeSwitch />
+      <ThemeSwitch  className='ml-auto'/>
     </div>
   )
 }

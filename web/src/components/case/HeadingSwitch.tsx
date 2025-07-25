@@ -15,7 +15,7 @@ export const HeadingSwitch = () => {
       className={clsx(
         'border border-1 border-slate-300 dark:border-slate-500 rounded-md',
         'text-slate-500 dark:text-slate-400',
-        'p-1',
+        'p-1 h-10',
       )}
     >
       <HeadingIcon headingTrained={headingTrained} />
