@@ -28,8 +28,6 @@ const dogData: DogData[] = [
   { fileName: 'dog_american_cocker_spaniel.png', loveToRunBackwards: true },
 ]
 
-const BASE_PATH = import.meta.env.VITE_BASE_PATH ?? ''
-
 export const MainContainer = () => {
   const [tasks, setTasks] = useState<string[]>([])
   const [dogIndex, setDogIndex] = useState<number>(0)
@@ -81,7 +79,7 @@ export const MainContainer = () => {
           alt="cute dog"
           width={150}
           height={150}
-          src={BASE_PATH + '/dogs/' + dogData[dogIndex].fileName}
+          src={'/dogs/' + dogData[dogIndex].fileName}
         />
       </div>
       <TaskInput

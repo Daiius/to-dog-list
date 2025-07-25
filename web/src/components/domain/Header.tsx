@@ -16,11 +16,9 @@ import {
 } from '@headlessui/react'
 import { useTheme } from 'next-themes'
 import { useSettings } from '@/providers/SettingsProvider'
-import {
-  InformationCircleIcon,
-  MoonIcon,
-  SunIcon,
-} from '@heroicons/react/24/outline'
+import { InformationCircleIcon } from '@/components/base/InformationCircleIcon'
+import { MoonIcon } from '@/components/base/MoonIcon'
+import { SunIcon } from '@/components/base/SunIcon'
 
 const ThemeSwitch = ({ className }: { className?: string }) => {
   const { setTheme, theme } = useTheme()
