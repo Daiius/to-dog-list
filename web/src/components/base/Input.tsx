@@ -2,7 +2,6 @@
 
 import { KeyboardEvent } from 'react'
 import clsx from 'clsx'
-import { Button as HeadlessButton } from '@headlessui/react'
 
 export type InputProps = {
   id?: string
@@ -37,14 +36,6 @@ export const Input = ({
         'h-11',
       )}
     />
-    <HeadlessButton
-      className={clsx(
-        'relative -ml-5',
-        value && value.length > 0 ? 'visible' : 'invisible',
-      )}
-      onClick={() => onChange?.('')}
-    >
-      <i className="bi bi-x" />
-    </HeadlessButton>
   </div>
 )
+

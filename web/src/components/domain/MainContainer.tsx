@@ -67,6 +67,7 @@ export const MainContainer = () => {
           'opacity-100',
           tasks.length > 0 && 'animate-come-and-eat',
           'overflow-hidden',
+          'z-40',
         )}
       >
         <img
@@ -84,7 +85,7 @@ export const MainContainer = () => {
         />
       </div>
       <TaskInput
-        className=''
+        className='mb-5 w-[calc(100vw-4rem)]'
         autoFocus
         onAddTask={(newTask) => {
           setTasks([...new Set([...tasks, newTask])])
