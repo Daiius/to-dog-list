@@ -34,6 +34,7 @@ export const Input = ({
         'dark:bg-slate-500 dark:border-slate-800',
         'focus:outline-none',
         'autofill:!bg-slate-300',
+        'h-11',
       )}
     />
     <HeadlessButton

@@ -28,8 +28,13 @@ export const TaskInput = ({
         New To-Do<span className="dark:text-slate-700 text-slate-300">g</span>:
       </Label>
       <div className="flex flex-row">
-        {/* <i className='bi bi-pen text-xl self-center mr-2'/> */}
-        <PencilIcon className="size-7 self-center mr-2" />
+        {/* 
+          NOTE: ml-8 で左端のスペースを調整したTaskListと左端の位置をそろえます 
+            size-7 mr-1 で揃うと思いきや、ちょっとズレているので?w-8要素で囲います
+        */}
+        <div className='w-8 flex items-center justify-center'>
+          <PencilIcon className="size-7 mr-1" />
+        </div>
         <Input
           id="task-input"
           value={newTask}
@@ -43,7 +48,7 @@ export const TaskInput = ({
               handleSubmitTask()
             }
           }}
-          className="w-full"
+          className="w-full h-11"
           autoFocus={autoFocus}
         />
         <HeadlessButton
