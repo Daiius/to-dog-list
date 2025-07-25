@@ -4,7 +4,8 @@ import { useState, type KeyboardEvent } from 'react'
 import { clsx } from 'clsx'
 import { Input } from '@/components/base/Input'
 import { Field, Label, Button as HeadlessButton } from '@headlessui/react'
-import { PencilIcon, PlusIcon } from '@heroicons/react/24/outline'
+import { PencilIcon } from '@/components/base/PencilIcon'
+import { ArrowTurnDownLeftIcon } from '@/components/base/ArrowTurnDownLeftIcon'
 
 export const TaskInput = ({
   onAddTask,
@@ -27,9 +28,14 @@ export const TaskInput = ({
       <Label htmlFor="task-input">
         New To-Do<span className="dark:text-slate-700 text-slate-300">g</span>:
       </Label>
-      <div className="flex flex-row">
-        {/* <i className='bi bi-pen text-xl self-center mr-2'/> */}
-        <PencilIcon className="size-7 self-center mr-2" />
+      <div className="flex flex-row items-center relative">
+        {/* 
+          NOTE: ml-8 で左端のスペースを調整したTaskListと左端の位置をそろえます 
+            size-7 mr-1 で揃うと思いきや、ちょっとズレているので?w-8要素で囲います
+        */}
+        <div className='w-8 flex items-center justify-center'>
+          <PencilIcon className="size-7 mr-1" />
+        </div>
         <Input
           id="task-input"
           value={newTask}
@@ -43,18 +49,21 @@ export const TaskInput = ({
               handleSubmitTask()
             }
           }}
-          className="w-full"
+          className="w-full h-11"
           autoFocus={autoFocus}
         />
         <HeadlessButton
           className={clsx(
             'border-[1.5px] dark:border-white',
-            'rounded-md h-[80%] self-center ml-2 px-2',
-            newTask.length > 0 ? 'visible' : 'invisible',
+            'rounded-md ml-4 px-2',
+            'h-10 w-16',
+            'absolute right-0',
+            newTask.length === 0 ? 'hidden' : 'vislble',
           )}
+          disabled={newTask.length === 0}
           onClick={handleSubmitTask}
         >
-          <PlusIcon className="size-6" />
+          <ArrowTurnDownLeftIcon className="mx-auto size-6" />
         </HeadlessButton>
       </div>
     </Field>

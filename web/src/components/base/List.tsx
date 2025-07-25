@@ -10,7 +10,6 @@ export const ListItem = ({
 }) => (
   <div
     className={clsx(
-      'bg-white dark:bg-slate-500',
       'first:rounded-t-lg last:rounded-b-lg',
       'p-2',
       className,

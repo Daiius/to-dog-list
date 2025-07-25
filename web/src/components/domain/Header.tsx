@@ -114,7 +114,7 @@ const HelpDialog = ({
   <Transition appear show={open}>
     <Dialog
       as="div"
-      className="relative z-10 focus:outline-none"
+      className="relative z-50 focus:outline-none"
       onClose={onClose}
     >
       <div className="fixed inset-0 bg-black/30 w-screen">

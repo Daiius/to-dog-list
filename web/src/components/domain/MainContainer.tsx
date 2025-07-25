@@ -39,7 +39,12 @@ export const MainContainer = () => {
   return (
     <div
       className={clsx(
-        'max-h-[70vh] self-center relative w-full p-5 overflow-hidden',
+        'max-h-[70vh] self-center p-5',
+        // NOTE: relativeとoverflow-hiddenの組み合わせ、ほぼ必須と思われます
+        //  犬の画像が画面横幅と同じ幅を持ったdiv要素に囲まれて、
+        //  画面の右端外に描画されるのですが、
+        //  relativeがなくてもoverflow-hiddenがなくても横スクロールバーが表示されてしまいます
+        'overflow-hidden relative', 
       )}
     >
       {/*
@@ -48,13 +53,21 @@ export const MainContainer = () => {
           使うのがよいらしい
           （横向きのスクロールバーが表示されそうだがそれは対処できる？）
         */}
-      <TaskList eaten={eaten} tasks={tasks} className="mb-5 w-[87.5%]" />
+      <TaskList 
+        eaten={eaten} 
+        tasks={tasks} 
+        className={clsx(
+          'mb-5 w-[calc(100vw-6rem)]',
+        )}
+      />
       <div
         className={clsx(
           'absolute translate-x-full top-0 w-full',
           'pointer-events-none h-fit',
           'opacity-100',
           tasks.length > 0 && 'animate-come-and-eat',
+          'overflow-hidden',
+          'z-40',
         )}
       >
         <img
@@ -72,6 +85,7 @@ export const MainContainer = () => {
         />
       </div>
       <TaskInput
+        className='mb-5 w-[calc(100vw-4rem)]'
         autoFocus
         onAddTask={(newTask) => {
           setTasks([...new Set([...tasks, newTask])])
