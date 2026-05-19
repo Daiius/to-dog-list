@@ -28,7 +28,7 @@ export const SettingsProvider = ({ children }: { children: ReactNode }) => {
   const { value: headingTrained, update: setHeadingTrained } =
     useLocalStorage<boolean>({
       key: 'headingTrained',
-      defaultValue: false,
+      defaultValue: true,
       mounted,
     })
 
