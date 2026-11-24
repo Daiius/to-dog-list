@@ -1,5 +1,3 @@
-'use client'
-
 import { useState } from 'react'
 
 import { ThemeSwitch } from '@/components/case/ThemeSwitch'

@@ -1,5 +1,3 @@
-'use client'
-
 import { useState, type KeyboardEvent } from 'react'
 import { clsx } from 'clsx'
 import { Input } from '@/components/base/Input'
