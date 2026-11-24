@@ -20,6 +20,13 @@ const themeIcons: {
   system: <ComputerDesktopIcon className="size-6" />,
 }
 
+// アイコンだけのボタンなので、読み上げ用の名前を別に持つ
+const themeLabels: { [theme in Themes]: string } = {
+  light: 'Light',
+  dark: 'Dark',
+  system: 'System',
+}
+
 export const ThemeSwitch = ({ className }: { className?: string }) => {
   const { setTheme, theme } = useTheme()
   // next-themes 0.4 は Provider の useState 初期化子で localStorage を同期的に読むので、
@@ -33,6 +40,7 @@ export const ThemeSwitch = ({ className }: { className?: string }) => {
     <div className={clsx('w-16 h-10', className)}>
       <Menu>
         <MenuButton
+          aria-label={`Theme: ${themeLabels[currentTheme]}`}
           className={clsx(
             'inline-flex items-center',
             'rounded-md w-16 h-10',
@@ -57,9 +65,12 @@ export const ThemeSwitch = ({ className }: { className?: string }) => {
           {themes.map((theme) => (
             <MenuItem key={theme}>
               <button
+                aria-label={themeLabels[theme]}
                 className={clsx(
                   'h-10 w-full',
                   'dark:hover:bg-white/10 hover:bg-black/10',
+                  // 矢印キーで選んでいる項目にも同じ色を付ける
+                  'dark:data-focus:bg-white/10 data-focus:bg-black/10',
                   'flex flex-col items-center justify-center',
                 )}
                 onClick={() => setTheme(theme)}

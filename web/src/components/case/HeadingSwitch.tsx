@@ -11,6 +11,7 @@ export const HeadingSwitch = () => {
     <Switch
       checked={headingTrained}
       onChange={(v) => setHeadingTrained(v)}
+      aria-label="Train dogs to run forwards"
       className={clsx(
         'border border-slate-300 dark:border-slate-500 rounded-md',
         'text-slate-500 dark:text-slate-400',

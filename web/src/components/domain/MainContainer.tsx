@@ -77,7 +77,9 @@ export const MainContainer = () => {
           'absolute transform-[translateX(100%)] top-0 w-full',
           'pointer-events-none h-fit',
           'opacity-100',
-          tasks.length > 0 && 'animate-come-and-eat',
+          // 動きを減らす設定では画面を横切らせず、食べる位置でフェードするだけにする
+          tasks.length > 0 &&
+            'animate-come-and-eat motion-reduce:animate-come-and-eat-reduced',
           'overflow-hidden',
           'z-40',
         )}
@@ -88,7 +90,9 @@ export const MainContainer = () => {
             tasks.length > 0 ? 'opacity-100' : 'opacity-0',
             shouldFlipDog(headingTrained, dogData[dogIndex]) && '-scale-x-100',
           )}
-          alt="cute dog"
+          // 飾りの画像なので読ませない
+          alt=""
+          aria-hidden="true"
           width={150}
           height={150}
           src={'/dogs/' + dogData[dogIndex].fileName}

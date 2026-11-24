@@ -24,12 +24,17 @@ export const Input = ({
       value={value}
       onChange={(e) => onChange?.(e.target.value)}
       onKeyDown={(e) => onKeyDown?.(e)}
+      // 呼ぶ側が決める（このアプリでは開いたら入力欄にいるのが意図どおり）
+      // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus={autoFocus}
       className={clsx(
         'border border-slate-300 bg-white',
         'rounded-md p-2 w-full',
         'dark:bg-slate-500 dark:border-slate-800',
+        // 既定の outline は消し、キーボードでも見える枠をこの見た目に合わせて出す
         'focus:outline-hidden',
+        'focus-visible:ring-2 focus-visible:ring-slate-500',
+        'dark:focus-visible:ring-slate-300',
         'autofill:bg-slate-300!',
         'h-11',
       )}
