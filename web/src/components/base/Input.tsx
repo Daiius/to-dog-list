@@ -26,7 +26,7 @@ export const Input = ({
       onKeyDown={(e) => onKeyDown?.(e)}
       autoFocus={autoFocus}
       className={clsx(
-        'border border-1 border-slate-300 bg-white',
+        'border border-slate-300 bg-white',
         'rounded-md p-2 w-full',
         'dark:bg-slate-500 dark:border-slate-800',
         'focus:outline-none',

@@ -1,7 +1,7 @@
 import { clsx } from 'clsx'
 
 export const DogIcon = ({ className }: { className?: string }) => (
-  <svg className={clsx(className)} viewBox="0 0 256 256" scale={0.01}>
+  <svg className={clsx(className)} viewBox="0 0 256 256">
     <path
       d="
       M 214.83522,240.48883

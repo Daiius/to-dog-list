@@ -82,7 +82,7 @@ export const MainContainer = () => {
       >
         <img
           className={clsx(
-            'w-fill h-auto',
+            'h-auto',
             tasks.length > 0 ? 'opacity-100' : 'opacity-0',
             shouldFlipDog(headingTrained, dogData[dogIndex]) && '-scale-x-100',
           )}
