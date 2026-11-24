@@ -11,8 +11,7 @@ export const addTask = (tasks: string[], newTask: string): string[] => [
 ]
 
 /** リストが空のところへ最初のタスクが来たときだけ、犬が食べに来る */
-export const shouldDogCome = (mounted: boolean, tasks: string[]): boolean =>
-  mounted && tasks.length === 0
+export const shouldDogCome = (tasks: string[]): boolean => tasks.length === 0
 
 /** 食べ終わったら次の犬に交代する（最後の犬の次は最初に戻る） */
 export const nextDogIndex = (index: number, dogCount: number): number =>
