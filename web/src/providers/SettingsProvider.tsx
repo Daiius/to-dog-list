@@ -10,6 +10,8 @@ export type Settings = {
 
 const SettingsContext = createContext<Settings | undefined>(undefined)
 
+// Context と対のフックなので同じファイルに置く（このファイルの編集時は全体再読み込みになる）
+// eslint-disable-next-line react-refresh/only-export-components
 export const useSettings = () =>
   useContext(SettingsContext) ??
   (() => {
