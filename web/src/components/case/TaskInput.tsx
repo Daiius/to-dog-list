@@ -25,7 +25,12 @@ export const TaskInput = ({
   return (
     <Field className={className}>
       <Label htmlFor="task-input">
-        New To-Do<span className="dark:text-slate-700 text-slate-300">g</span>:
+        {/* 飾りの g は読ませない（「New To-Do:」と読む） */}
+        New To-Do
+        <span aria-hidden="true" className="dark:text-slate-700 text-slate-300">
+          g
+        </span>
+        :
       </Label>
       <div className="flex flex-row items-center relative">
         {/* 
@@ -56,6 +61,7 @@ export const TaskInput = ({
             newTask.length === 0 ? 'hidden' : 'visible',
           )}
           disabled={newTask.length === 0}
+          aria-label="Add To-Do"
           onClick={handleSubmitTask}
         >
           <ArrowTurnDownLeftIcon className="mx-auto size-6" />
