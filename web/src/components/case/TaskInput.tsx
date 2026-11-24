@@ -6,6 +6,7 @@ import { Input } from '@/components/base/Input'
 import { Field, Label, Button as HeadlessButton } from '@headlessui/react'
 import { PencilIcon } from '@/components/base/PencilIcon'
 import { ArrowTurnDownLeftIcon } from '@/components/base/ArrowTurnDownLeftIcon'
+import { canSubmitByEnter } from '@/lib/tasks'
 
 export const TaskInput = ({
   onAddTask,
@@ -33,7 +34,7 @@ export const TaskInput = ({
           NOTE: ml-8 で左端のスペースを調整したTaskListと左端の位置をそろえます 
             size-7 mr-1 で揃うと思いきや、ちょっとズレているので?w-8要素で囲います
         */}
-        <div className='w-8 flex items-center justify-center'>
+        <div className="w-8 flex items-center justify-center">
           <PencilIcon className="size-7 mr-1" />
         </div>
         <Input
@@ -41,11 +42,7 @@ export const TaskInput = ({
           value={newTask}
           onChange={(newValue: string) => setNewTask(newValue)}
           onKeyDown={(e: KeyboardEvent) => {
-            if (
-              !e.nativeEvent.isComposing &&
-              e.key === 'Enter' &&
-              newTask.length > 0
-            ) {
+            if (canSubmitByEnter(e.key, e.nativeEvent.isComposing, newTask)) {
               handleSubmitTask()
             }
           }}

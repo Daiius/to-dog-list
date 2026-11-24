@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 
-
 import { ThemeSwitch } from '@/components/case/ThemeSwitch'
 import { HelpDialog } from '@/components/case/HelpDialog'
 import { HeadingSwitch } from '@/components/case/HeadingSwitch'
@@ -15,7 +14,7 @@ export const Header = () => {
       <HelpDialog open={open} onClose={() => setOpen(false)} />
       <HeadingSwitch />
       <HelpButton onClick={() => setOpen(true)} />
-      <ThemeSwitch  className='ml-auto'/>
+      <ThemeSwitch className="ml-auto" />
     </div>
   )
 }
