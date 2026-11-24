@@ -1,16 +1,16 @@
-import { useState } from 'react'
+import { useEffect, useReducer } from 'react'
 import clsx from 'clsx'
 
 import { TaskInput } from '@/components/case/TaskInput'
 import { TaskList } from '@/components/case/TaskList'
 import { useSettings } from '@/hooks/useSettings'
+import { shouldFlipDog, type DogData } from '@/lib/tasks'
 import {
-  addTask,
-  nextDogIndex,
-  shouldDogCome,
-  shouldFlipDog,
-  type DogData,
-} from '@/lib/tasks'
+  ROUND_SCHEDULE,
+  eatCycleReducer,
+  initialEatCycleState,
+  isEaten,
+} from '@/lib/eatCycle'
 
 const dogData: DogData[] = [
   { fileName: 'dog_belgian_groenendael.png', loveToRunBackwards: true },
@@ -29,11 +29,24 @@ const dogData: DogData[] = [
   { fileName: 'dog_american_cocker_spaniel.png', loveToRunBackwards: true },
 ]
 
+const reducer = eatCycleReducer(dogData.length)
+
 export const MainContainer = () => {
-  const [tasks, setTasks] = useState<string[]>([])
-  const [dogIndex, setDogIndex] = useState<number>(0)
-  const [eaten, setEaten] = useState<boolean>(false)
+  const [state, dispatch] = useReducer(reducer, undefined, () =>
+    initialEatCycleState(),
+  )
+  const { tasks, dogIndex, round } = state
+  const eaten = isEaten(state)
   const { headingTrained } = useSettings()
+
+  // 巡りが始まるたびにその巡りのタイマーを張る。巡りが替わるか外れたら片付ける
+  useEffect(() => {
+    if (round === 0) return
+    const timerIds = ROUND_SCHEDULE.map(({ at, type }) =>
+      setTimeout(() => dispatch({ type, round }), at),
+    )
+    return () => timerIds.forEach(clearTimeout)
+  }, [round])
 
   return (
     <div
@@ -82,18 +95,7 @@ export const MainContainer = () => {
       <TaskInput
         className="mb-5 w-[calc(100vw-4rem)]"
         autoFocus
-        onAddTask={(newTask) => {
-          setTasks(addTask(tasks, newTask))
-          if (shouldDogCome(tasks)) {
-            setTimeout(() => setEaten(true), 3000)
-            setTimeout(() => setTasks([]), 4000)
-            setTimeout(() => setEaten(false), 5000)
-            setTimeout(
-              () => setDogIndex((v) => nextDogIndex(v, dogData.length)),
-              5000,
-            )
-          }
-        }}
+        onAddTask={(task) => dispatch({ type: 'add', task })}
       />
     </div>
   )
