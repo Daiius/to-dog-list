@@ -35,7 +35,7 @@ It might lead to irreparable consequences... :(
 
 ## 開発メモ
 ### 画面イメージ
-![画面構成検討](layout_memo.svg)
+![画面構成検討](web/layout_memo.svg)
 
 ### 内部の処理
 犬たちのアニメーションはCSSで設定、
@@ -43,5 +43,16 @@ It might lead to irreparable consequences... :(
 
 それと登録したタスクが消える動作は並行して行う必要がある。
 task配列を空にしてしまうと一瞬でTaskListの内容が消えてしまうので、
-eatenとか何かフェードアウトするための処理を追加したい。
+`eaten` でフェードアウトさせてから配列を空にしている。
 
+### 開発コマンド
+`web/` で実行する（pnpm を使う）。
+
+```sh
+pnpm install
+pnpm dev           # 開発サーバ
+pnpm test          # テスト (Vitest)
+pnpm lint          # ESLint
+pnpm format:check  # Prettier の書式検査
+pnpm build         # 型検査とビルド
+```
