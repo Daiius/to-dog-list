@@ -19,6 +19,27 @@
       content="かわいい犬がタスクを食べてくれるWebアプリ"
     />
     <title>To Dog List</title>
+    <!--
+      next-themes の inline script は React が描くので、クライアントだけの描画では動かない。
+      最初の描画より前に同じ処理をして、ダークで保存した人に明るい画面が一瞬出るのを防ぐ。
+      main.tsx の ThemeProvider（attribute="class"、storageKey と defaultTheme は既定の
+      'theme' と 'system'、enableSystem）に合わせてあるので、そちらを変えたらここも直す
+    -->
+    <script>
+      ;(function () {
+        try {
+          var t = localStorage.getItem('theme') || 'system'
+          if (t === 'system')
+            t = matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light'
+          var e = document.documentElement
+          e.classList.remove('light', 'dark')
+          e.classList.add(t)
+          if (t === 'light' || t === 'dark') e.style.colorScheme = t
+        } catch (_) {}
+      })()
+    </script>
 
     <link rel="icon" href="./icon.ico" />
   </head>
