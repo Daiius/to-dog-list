@@ -1,5 +1,3 @@
-'use client'
-
 import { createContext, useContext, type ReactNode } from 'react'
 import { useMount } from '@/hooks/useMount'
 import { useLocalStorage } from '@/hooks/useLocalStorage'

@@ -1,5 +1,3 @@
-'use client'
-
 import { KeyboardEvent } from 'react'
 import clsx from 'clsx'
 
