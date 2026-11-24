@@ -77,7 +77,9 @@ export const MainContainer = () => {
           'absolute transform-[translateX(100%)] top-0 w-full',
           'pointer-events-none h-fit',
           'opacity-100',
-          tasks.length > 0 && 'animate-come-and-eat',
+          // 動きを減らす設定では画面を横切らせず、食べる位置でフェードするだけにする
+          tasks.length > 0 &&
+            'animate-come-and-eat motion-reduce:animate-come-and-eat-reduced',
           'overflow-hidden',
           'z-40',
         )}

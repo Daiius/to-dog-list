@@ -25,11 +25,12 @@ export const HelpDialog = ({
         <div className="flex min-h-full items-start justify-center p-4">
           <TransitionChild
             enter="ease-out duration-300"
-            enterFrom="opacity-0 scale-95"
+            // 動きを減らす設定では拡大縮小をやめ、フェードだけにする
+            enterFrom="opacity-0 scale-95 motion-reduce:scale-100"
             enterTo="opacity-100 scale-100"
             leave="ease-in duration-200"
             leaveFrom="opacity-100 scale-100"
-            leaveTo="opacity-0 scale-95"
+            leaveTo="opacity-0 scale-95 motion-reduce:scale-100"
           >
             <DialogPanel
               onClick={onClose}
