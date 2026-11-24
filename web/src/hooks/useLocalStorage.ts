@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { readStoredValue } from '@/lib/storage'
 
 export type UseLocalStorageArgs<T> = {
   defaultValue: T
@@ -28,11 +29,7 @@ export const useLocalStorage = <T>({
       // localStorageに初期値が存在していれば、読みだす
       // 外部（localStorage）から初回だけ読み込むための setState なので意図どおり
       // eslint-disable-next-line react-hooks/set-state-in-effect
-      setCurrentValue(
-        localStorage?.getItem(key)
-          ? JSON.parse(localStorage.getItem(key) ?? 'null')
-          : defaultValue,
-      )
+      setCurrentValue(readStoredValue(localStorage, key, defaultValue))
     }
   }, [currentValue])
 

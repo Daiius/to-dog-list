@@ -5,11 +5,13 @@ import clsx from 'clsx'
 import { TaskInput } from '@/components/case/TaskInput'
 import { TaskList } from '@/components/case/TaskList'
 import { useSettings } from '@/providers/SettingsProvider'
-
-type DogData = {
-  fileName: string
-  loveToRunBackwards: boolean // 右向きの画像ならtrue
-}
+import {
+  addTask,
+  nextDogIndex,
+  shouldDogCome,
+  shouldFlipDog,
+  type DogData,
+} from '@/lib/tasks'
 
 const dogData: DogData[] = [
   { fileName: 'dog_belgian_groenendael.png', loveToRunBackwards: true },
@@ -72,9 +74,7 @@ export const MainContainer = () => {
           className={clsx(
             'w-fill h-auto',
             tasks.length > 0 ? 'opacity-100' : 'opacity-0',
-            headingTrained &&
-              dogData[dogIndex].loveToRunBackwards &&
-              '-scale-x-100',
+            shouldFlipDog(headingTrained, dogData[dogIndex]) && '-scale-x-100',
           )}
           alt="cute dog"
           width={150}
@@ -86,12 +86,15 @@ export const MainContainer = () => {
         className='mb-5 w-[calc(100vw-4rem)]'
         autoFocus
         onAddTask={(newTask) => {
-          setTasks([...new Set([...tasks, newTask])])
-          if (mounted && tasks.length === 0) {
+          setTasks(addTask(tasks, newTask))
+          if (shouldDogCome(mounted, tasks)) {
             setTimeout(() => setEaten(true), 3000)
             setTimeout(() => setTasks([]), 4000)
             setTimeout(() => setEaten(false), 5000)
-            setTimeout(() => setDogIndex((v) => (v + 1) % dogData.length), 5000)
+            setTimeout(
+              () => setDogIndex((v) => nextDogIndex(v, dogData.length)),
+              5000,
+            )
           }
         }}
       />
