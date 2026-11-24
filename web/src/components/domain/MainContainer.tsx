@@ -44,7 +44,7 @@ export const MainContainer = () => {
         //  犬の画像が画面横幅と同じ幅を持ったdiv要素に囲まれて、
         //  画面の右端外に描画されるのですが、
         //  relativeがなくてもoverflow-hiddenがなくても横スクロールバーが表示されてしまいます
-        'overflow-hidden relative', 
+        'overflow-hidden relative',
       )}
     >
       {/*
@@ -53,12 +53,10 @@ export const MainContainer = () => {
           使うのがよいらしい
           （横向きのスクロールバーが表示されそうだがそれは対処できる？）
         */}
-      <TaskList 
-        eaten={eaten} 
-        tasks={tasks} 
-        className={clsx(
-          'mb-5 w-[calc(100vw-6rem)]',
-        )}
+      <TaskList
+        eaten={eaten}
+        tasks={tasks}
+        className={clsx('mb-5 w-[calc(100vw-6rem)]')}
       />
       <div
         className={clsx(
@@ -83,7 +81,7 @@ export const MainContainer = () => {
         />
       </div>
       <TaskInput
-        className='mb-5 w-[calc(100vw-4rem)]'
+        className="mb-5 w-[calc(100vw-4rem)]"
         autoFocus
         onAddTask={(newTask) => {
           setTasks(addTask(tasks, newTask))

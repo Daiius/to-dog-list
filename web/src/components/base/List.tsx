@@ -9,11 +9,7 @@ export const ListItem = ({
   className?: string
 }) => (
   <div
-    className={clsx(
-      'first:rounded-t-lg last:rounded-b-lg',
-      'p-2',
-      className,
-    )}
+    className={clsx('first:rounded-t-lg last:rounded-b-lg', 'p-2', className)}
   >
     {children}
   </div>

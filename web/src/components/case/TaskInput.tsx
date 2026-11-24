@@ -34,7 +34,7 @@ export const TaskInput = ({
           NOTE: ml-8 で左端のスペースを調整したTaskListと左端の位置をそろえます 
             size-7 mr-1 で揃うと思いきや、ちょっとズレているので?w-8要素で囲います
         */}
-        <div className='w-8 flex items-center justify-center'>
+        <div className="w-8 flex items-center justify-center">
           <PencilIcon className="size-7 mr-1" />
         </div>
         <Input

@@ -1,9 +1,12 @@
-
 import { clsx } from 'clsx'
 
 import { DogIcon } from '@/components/base/DogIcon'
 
-export const HeadingIcon = ({ headingTrained }: { headingTrained: boolean }) => (
+export const HeadingIcon = ({
+  headingTrained,
+}: {
+  headingTrained: boolean
+}) => (
   <div className="flex flex-row">
     <DogIcon
       className="
