@@ -4,19 +4,16 @@ import { readStoredValue } from '@/lib/storage'
 export type UseLocalStorageArgs<T> = {
   defaultValue: T
   key: string
-  mounted: boolean
 }
 
 export type UseLocalStorage<T> = {
   value: T
   update: (newData: T) => void
-  isLoaded: boolean
 }
 
 export const useLocalStorage = <T>({
   defaultValue,
   key,
-  mounted,
 }: UseLocalStorageArgs<T>): UseLocalStorage<T> => {
   // Vite の SPA で SSR は無いので、初回の描画の時点で localStorage から読める
   const [currentValue, setCurrentValue] = useState<T>(() =>
@@ -31,6 +28,5 @@ export const useLocalStorage = <T>({
   return {
     value: currentValue,
     update: setCurrentValue,
-    isLoaded: mounted,
   }
 }

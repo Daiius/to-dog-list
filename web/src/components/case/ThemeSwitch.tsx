@@ -8,7 +8,6 @@ import { MoonIcon } from '@/components/base/MoonIcon'
 import { SunIcon } from '@/components/base/SunIcon'
 import { ComputerDesktopIcon } from '@/components/base/ComputerDesktopIcon'
 import { ChevronDownIcon } from '@/components/base/ChevronDownIcon'
-import { useSettings } from '@/providers/SettingsProvider'
 
 const themes = ['light', 'dark', 'system'] as const
 type Themes = (typeof themes)[number]
@@ -23,10 +22,9 @@ const themeIcons: {
 
 export const ThemeSwitch = ({ className }: { className?: string }) => {
   const { setTheme, theme } = useTheme()
-  const { mounted } = useSettings()
-
-  if (!mounted) return null
-
+  // next-themes 0.4 は Provider の useState 初期化子で localStorage を同期的に読むので、
+  // SPA では初回の描画から theme が入っている（未保存なら defaultTheme の 'system'）。
+  // 万一 undefined や想定外の値でも 'system' のアイコンに倒す
   const currentTheme = (
     theme != null && theme in themeIcons ? theme : 'system'
   ) as Themes

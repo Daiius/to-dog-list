@@ -25,15 +25,11 @@ describe('addTask', () => {
 
 describe('shouldDogCome', () => {
   it('空のリストに最初のタスクが来たら犬が来る', () => {
-    expect(shouldDogCome(true, [])).toBe(true)
+    expect(shouldDogCome([])).toBe(true)
   })
 
   it('すでに犬が向かっている（タスクがある）ときは重ねて来ない', () => {
-    expect(shouldDogCome(true, ['散歩'])).toBe(false)
-  })
-
-  it('マウント前は来ない', () => {
-    expect(shouldDogCome(false, [])).toBe(false)
+    expect(shouldDogCome(['散歩'])).toBe(false)
   })
 })
 

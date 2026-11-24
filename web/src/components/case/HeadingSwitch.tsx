@@ -2,12 +2,11 @@ import { clsx } from 'clsx'
 
 import { Switch } from '@headlessui/react'
 
-import { useSettings } from '@/providers/SettingsProvider'
+import { useSettings } from '@/hooks/useSettings'
 import { HeadingIcon } from '@/components/case/HeadingIcon'
 
 export const HeadingSwitch = () => {
-  const { headingTrained, setHeadingTrained, mounted } = useSettings()
-  if (!mounted) return null
+  const { headingTrained, setHeadingTrained } = useSettings()
   return (
     <Switch
       checked={headingTrained}

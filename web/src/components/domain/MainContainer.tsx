@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 import { TaskInput } from '@/components/case/TaskInput'
 import { TaskList } from '@/components/case/TaskList'
-import { useSettings } from '@/providers/SettingsProvider'
+import { useSettings } from '@/hooks/useSettings'
 import {
   addTask,
   nextDogIndex,
@@ -33,7 +33,7 @@ export const MainContainer = () => {
   const [tasks, setTasks] = useState<string[]>([])
   const [dogIndex, setDogIndex] = useState<number>(0)
   const [eaten, setEaten] = useState<boolean>(false)
-  const { headingTrained, mounted } = useSettings()
+  const { headingTrained } = useSettings()
 
   return (
     <div
@@ -84,7 +84,7 @@ export const MainContainer = () => {
         autoFocus
         onAddTask={(newTask) => {
           setTasks(addTask(tasks, newTask))
-          if (shouldDogCome(mounted, tasks)) {
+          if (shouldDogCome(tasks)) {
             setTimeout(() => setEaten(true), 3000)
             setTimeout(() => setTasks([]), 4000)
             setTimeout(() => setEaten(false), 5000)
