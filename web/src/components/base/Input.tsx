@@ -24,6 +24,8 @@ export const Input = ({
       value={value}
       onChange={(e) => onChange?.(e.target.value)}
       onKeyDown={(e) => onKeyDown?.(e)}
+      // 呼ぶ側が決める（このアプリでは開いたら入力欄にいるのが意図どおり）
+      // eslint-disable-next-line jsx-a11y/no-autofocus
       autoFocus={autoFocus}
       className={clsx(
         'border border-slate-300 bg-white',
