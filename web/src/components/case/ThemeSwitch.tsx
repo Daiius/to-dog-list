@@ -69,6 +69,8 @@ export const ThemeSwitch = ({ className }: { className?: string }) => {
                 className={clsx(
                   'h-10 w-full',
                   'dark:hover:bg-white/10 hover:bg-black/10',
+                  // 矢印キーで選んでいる項目にも同じ色を付ける
+                  'dark:data-focus:bg-white/10 data-focus:bg-black/10',
                   'flex flex-col items-center justify-center',
                 )}
                 onClick={() => setTheme(theme)}
