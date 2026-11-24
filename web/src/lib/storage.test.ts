@@ -17,4 +17,10 @@ describe('readStoredValue', () => {
   it('storage が無ければ既定値を返す', () => {
     expect(readStoredValue(undefined, 'k', true)).toBe(true)
   })
+
+  it('保存値が JSON として壊れていれば既定値を返し、保存値は消さない', () => {
+    const items = { k: '{broken' }
+    expect(readStoredValue(storageOf(items), 'k', true)).toBe(true)
+    expect(items).toEqual({ k: '{broken' })
+  })
 })
