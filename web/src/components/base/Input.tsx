@@ -29,8 +29,8 @@ export const Input = ({
         'border border-slate-300 bg-white',
         'rounded-md p-2 w-full',
         'dark:bg-slate-500 dark:border-slate-800',
-        'focus:outline-none',
-        'autofill:!bg-slate-300',
+        'focus:outline-hidden',
+        'autofill:bg-slate-300!',
         'h-11',
       )}
     />

@@ -15,7 +15,7 @@ export const TaskList = ({ tasks, eaten, className }: TaskListProps) => (
     </div>
     <List
       className={clsx(
-        'ml-8 max-h-[20rem] min-h-11 rounded-lg shadow-inner w-full',
+        'ml-8 max-h-80 min-h-11 rounded-lg shadow-inner w-full',
         'dark:bg-slate-600  bg-white',
         'border border-slate-300 dark:border-slate-500',
         'overflow-hidden',

@@ -18,7 +18,7 @@ export const HelpDialog = ({
   <Transition appear show={open}>
     <Dialog
       as="div"
-      className="relative z-50 focus:outline-none"
+      className="relative z-50 focus:outline-hidden"
       onClose={onClose}
     >
       <div className="fixed inset-0 bg-black/30 w-screen">
@@ -33,7 +33,7 @@ export const HelpDialog = ({
           >
             <DialogPanel
               onClick={onClose}
-              className="w-full max-w-[80%] rounded-xl bg-slate-300 dark:bg-slate-600 py-2 px-5 backdrop-blur-2xl"
+              className="w-full max-w-4/5 rounded-xl bg-slate-300 dark:bg-slate-600 py-2 px-5 backdrop-blur-2xl"
             >
               <DialogTitle className="my-1 font-bold">
                 <div>
