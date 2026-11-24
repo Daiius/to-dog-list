@@ -12,7 +12,7 @@ export const HeadingSwitch = () => {
       checked={headingTrained}
       onChange={(v) => setHeadingTrained(v)}
       className={clsx(
-        'border border-1 border-slate-300 dark:border-slate-500 rounded-md',
+        'border border-slate-300 dark:border-slate-500 rounded-md',
         'text-slate-500 dark:text-slate-400',
         'p-1 h-10',
       )}

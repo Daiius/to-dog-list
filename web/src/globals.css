@@ -1,3 +1,72 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/* next-themes が <html> に .dark を付ける */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* v4.3 の既定（-apple-system から始まる並び）ではなく v3 の並びに保つ */
+  --font-sans:
+    ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --animate-come-and-eat: come 5s;
+
+  @keyframes come {
+    0% {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+    52.5% {
+      opacity: 1;
+      transform: translateX(-0%);
+    }
+    55% {
+      opacity: 1;
+      transform: translate(-0%, 20px);
+    }
+    60% {
+      opacity: 1;
+      transform: translate(-0%, 0px);
+    }
+    62.5% {
+      opacity: 1;
+      transform: translate(-0%, 20px);
+    }
+    65% {
+      opacity: 1;
+      transform: translate(-0%, 0px);
+    }
+    67.5% {
+      opacity: 1;
+      transform: translate(-0%, 20px);
+    }
+    70% {
+      opacity: 1;
+      transform: translate(-0%, 0px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-150vw, 0px);
+    }
+  }
+}
+
+/*
+  v3 からの見た目を保つための互換スタイル（公式の移行ガイドのもの）
+  - 既定の枠線色: v4 は currentcolor、v3 は gray-200
+  - ボタンのカーソル: v4 は default、v3 は pointer
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}

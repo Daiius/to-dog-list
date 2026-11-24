@@ -72,7 +72,9 @@ export const MainContainer = () => {
       />
       <div
         className={clsx(
-          'absolute translate-x-full top-0 w-full',
+          // NOTE: v4 の translate-x-full は translate プロパティで、come の transform に
+          //  足し合わされて犬が画面外にずれる。v3 と同じく transform で置き、アニメーション中は上書きさせる
+          'absolute transform-[translateX(100%)] top-0 w-full',
           'pointer-events-none h-fit',
           'opacity-100',
           tasks.length > 0 && 'animate-come-and-eat',
@@ -82,7 +84,7 @@ export const MainContainer = () => {
       >
         <img
           className={clsx(
-            'w-fill h-auto',
+            'h-auto',
             tasks.length > 0 ? 'opacity-100' : 'opacity-0',
             shouldFlipDog(headingTrained, dogData[dogIndex]) && '-scale-x-100',
           )}

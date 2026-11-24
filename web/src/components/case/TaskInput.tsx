@@ -53,7 +53,7 @@ export const TaskInput = ({
             'rounded-md ml-4 px-2',
             'h-10 w-16',
             'absolute right-0',
-            newTask.length === 0 ? 'hidden' : 'vislble',
+            newTask.length === 0 ? 'hidden' : 'visible',
           )}
           disabled={newTask.length === 0}
           onClick={handleSubmitTask}

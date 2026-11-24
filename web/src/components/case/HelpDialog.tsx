@@ -18,18 +18,18 @@ export const HelpDialog = ({
   <Transition appear show={open}>
     <Dialog
       as="div"
-      className="relative z-50 focus:outline-none"
+      className="relative z-50 focus:outline-hidden"
       onClose={onClose}
     >
       <div className="fixed inset-0 bg-black/30 w-screen">
         <div className="flex min-h-full items-start justify-center p-4">
           <TransitionChild
             enter="ease-out duration-300"
-            enterFrom="opacity-0 transform-[scale(95%)]"
-            enterTo="opecity-100 transform-[scale(100%)]"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
             leave="ease-in duration-200"
-            leaveFrom="opacity-100 transform-[scale(100%)]"
-            leaveTo="opacity-0 transform-[scale(95%)]"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
           >
             <DialogPanel
               onClick={onClose}
