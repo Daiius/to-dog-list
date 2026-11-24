@@ -19,10 +19,10 @@ jobs:
         with:
           persist-credentials: false
 
-      # web/package.json に packageManager が無いので、版はここで指定する
+      # 版は web/package.json の packageManager から読ませる（パスはリポジトリ直下から）
       - uses: pnpm/action-setup@73e46992e05b19abd31f2f3c20e0e7370d762115 # v6.1.1
         with:
-          version: 11
+          package_json_file: web/package.json
 
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
